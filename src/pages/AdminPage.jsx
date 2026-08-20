@@ -508,6 +508,7 @@ export default function AdminPage() {
                   <div><label className={lbl}>Bio Paragraph 1</label><textarea rows={3} value={profileForm.bioDesc1||''} onChange={e => setProfileForm(p=>({...p,bioDesc1:e.target.value}))} className={ta} placeholder="Chef background and experience..." /></div>
                   <div><label className={lbl}>Bio Paragraph 2</label><textarea rows={3} value={profileForm.bioDesc2||''} onChange={e => setProfileForm(p=>({...p,bioDesc2:e.target.value}))} className={ta} placeholder="Cooking philosophy and style..." /></div>
                   <div><label className={lbl}>Cooking Style Badge</label><input value={profileForm.cookingStyle||''} onChange={e => setProfileForm(p=>({...p,cookingStyle:e.target.value}))} className={inp} placeholder="Modern Fine Dining" /></div>
+                </div>
                 <div className={`${card} p-5 space-y-4`}>
                   <h3 className="text-sm font-semibold text-theme-primary uppercase tracking-wider">Images</h3>
                   <ImageUploadField
