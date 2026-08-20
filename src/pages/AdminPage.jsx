@@ -485,9 +485,10 @@ export default function AdminPage() {
                 <div><h2 className="text-xl font-serif font-bold text-theme-primary">Chef Profile</h2><p className="text-xs text-theme-muted mt-1">Edit your bio, images, and contact details.</p></div>
                 <div className={`${card} p-5 space-y-4`}>
                   <h3 className="text-sm font-semibold text-theme-primary uppercase tracking-wider">Basic Info</h3>
-                  {[['Name','name'],['Job Title','title'],['Hero Tagline','tagline'],['Hero Subtitle','subtitle']].map(([l,k]) => (
-                    <div key={k}><label className={lbl}>{l}</label><input value={profileForm[k]||''} onChange={e => setProfileForm(p=>({...p,[k]:e.target.value}))} className={inp} /></div>
-                  ))}
+                  <div><label className={lbl}>Name</label><input value={profileForm.name||''} onChange={e => setProfileForm(p=>({...p,name:e.target.value}))} className={inp} /></div>
+                  <div><label className={lbl}>Job Title</label><input value={profileForm.title||''} onChange={e => setProfileForm(p=>({...p,title:e.target.value}))} className={inp} /></div>
+                  <div><label className={lbl}>Hero Tagline</label><input value={profileForm.tagline||''} onChange={e => setProfileForm(p=>({...p,tagline:e.target.value}))} className={inp} /></div>
+                  <div><label className={lbl}>Hero Subtitle</label><input value={profileForm.subtitle||''} onChange={e => setProfileForm(p=>({...p,subtitle:e.target.value}))} className={inp} /></div>
                   <div><label className={lbl}>Philosophy / Belief</label><textarea rows={3} value={profileForm.philosophy||''} onChange={e => setProfileForm(p=>({...p,philosophy:e.target.value}))} className={ta} /></div>
                   <div className="grid grid-cols-3 gap-4">
                     <div><label className={lbl}>Michelin Stars</label><input type="number" min={1} max={3} value={profileForm.michelinStars||3} onChange={e => setProfileForm(p=>({...p,michelinStars:Number(e.target.value)}))} className={inp} /></div>
@@ -495,6 +496,12 @@ export default function AdminPage() {
                     <div><label className={lbl}>Dishes Count</label><input type="number" value={profileForm.signatureDishesCount||42} onChange={e => setProfileForm(p=>({...p,signatureDishesCount:Number(e.target.value)}))} className={inp} /></div>
                   </div>
                 </div>
+                <div className={`${card} p-5 space-y-4`}>
+                  <h3 className="text-sm font-semibold text-theme-primary uppercase tracking-wider">Bio Section Text</h3>
+                  <div><label className={lbl}>Bio Tagline (large quote)</label><input value={profileForm.bioTagline||''} onChange={e => setProfileForm(p=>({...p,bioTagline:e.target.value}))} className={inp} placeholder="Good food is made with care..." /></div>
+                  <div><label className={lbl}>Bio Paragraph 1</label><textarea rows={3} value={profileForm.bioDesc1||''} onChange={e => setProfileForm(p=>({...p,bioDesc1:e.target.value}))} className={ta} placeholder="Chef background and experience..." /></div>
+                  <div><label className={lbl}>Bio Paragraph 2</label><textarea rows={3} value={profileForm.bioDesc2||''} onChange={e => setProfileForm(p=>({...p,bioDesc2:e.target.value}))} className={ta} placeholder="Cooking philosophy and style..." /></div>
+                  <div><label className={lbl}>Cooking Style Badge</label><input value={profileForm.cookingStyle||''} onChange={e => setProfileForm(p=>({...p,cookingStyle:e.target.value}))} className={inp} placeholder="Modern Fine Dining" /></div>
                 <div className={`${card} p-5 space-y-4`}>
                   <h3 className="text-sm font-semibold text-theme-primary uppercase tracking-wider">Images</h3>
                   <ImageUploadField

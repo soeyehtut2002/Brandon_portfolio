@@ -52,13 +52,13 @@ export default function ChefBio() {
           {/* Text Column */}
           <div className="lg:col-span-7 flex flex-col justify-center space-y-5">
             <h3 className="text-xl sm:text-2xl lg:text-3xl font-serif text-theme-primary font-semibold leading-snug">
-              "Good food is made with care, skill, and the best ingredients."
+              "{chefProfile.bioTagline || chefProfile.tagline}"
             </h3>
             <p className="text-theme-secondary font-light leading-relaxed text-sm sm:text-base">
-              Chef {chefProfile.name} trained in France and worked in top kitchens across Tokyo, Osaka, and Copenhagen. He brings a creative and modern style to every dish.
+              {chefProfile.bioDesc1 || `Chef ${chefProfile.name} is a world-class chef dedicated to culinary excellence.`}
             </p>
             <p className="text-theme-muted font-light leading-relaxed text-sm">
-              Every dish uses fresh, seasonal ingredients and is cooked with care and skill. The result is food that is beautiful to look at and wonderful to taste.
+              {chefProfile.bioDesc2 || chefProfile.subtitle}
             </p>
 
             {/* Philosophy Card */}
@@ -76,7 +76,7 @@ export default function ChefBio() {
                 </div>
                 <div>
                   <div className="text-xs text-orange-400 uppercase tracking-wider">Awards</div>
-                  <div className="text-sm font-semibold text-theme-primary">3 Michelin Stars</div>
+                  <div className="text-sm font-semibold text-theme-primary">{chefProfile.michelinStars} Michelin Stars</div>
                 </div>
               </div>
               <div className="flex items-center gap-3 glass-card p-3 rounded-xl">
@@ -85,7 +85,7 @@ export default function ChefBio() {
                 </div>
                 <div>
                   <div className="text-xs text-orange-400 uppercase tracking-wider">Style</div>
-                  <div className="text-sm font-semibold text-theme-primary">Modern Fine Dining</div>
+                  <div className="text-sm font-semibold text-theme-primary">{chefProfile.cookingStyle || 'Modern Fine Dining'}</div>
                 </div>
               </div>
             </div>

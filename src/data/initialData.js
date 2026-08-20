@@ -9,6 +9,10 @@ export const initialChefProfile = {
   heroImage: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=1920&q=80",
   bioPortrait: "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=1000&q=80",
   philosophy: "Every dish has a story. Cooking is not just about filling a plate — it is about creating a moment that people remember through taste, smell, and feeling.",
+  bioTagline: "Good food is made with care, skill, and the best ingredients.",
+  bioDesc1: "Chef Antoine trained in France and worked in top kitchens across Tokyo, Osaka, and Copenhagen. He brings a creative and modern style to every dish.",
+  bioDesc2: "Every dish uses fresh, seasonal ingredients and is cooked with care and skill. The result is food that is beautiful to look at and wonderful to taste.",
+  cookingStyle: "Modern Fine Dining",
   socials: {
     instagram: "@chef_antoine_laurent",
     twitter: "@chef_laurent",
