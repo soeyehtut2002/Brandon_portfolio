@@ -12,7 +12,7 @@ import {
 const PortfolioContext = createContext();
 
 export const PortfolioProvider = ({ children }) => {
-  // Load from localStorage or default
+  // Primary States
   const [chefProfile, setChefProfile] = useState(() => {
     const saved = localStorage.getItem('chef_portfolio_profile');
     return saved ? JSON.parse(saved) : initialChefProfile;
@@ -48,9 +48,8 @@ export const PortfolioProvider = ({ children }) => {
     return saved ? JSON.parse(saved) : initialReservations;
   });
 
-  // UI Modal States
+  // UI Modal & Toast States
   const [selectedDishModal, setSelectedDishModal] = useState(null);
-  const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
 
   // Dark Mode
@@ -70,90 +69,145 @@ export const PortfolioProvider = ({ children }) => {
 
   const toggleDarkMode = () => setDarkMode(prev => !prev);
 
-  // Sync to localStorage
+  // Fetch initial data from backend API (Neon DB) on mount
   useEffect(() => {
-    localStorage.setItem('chef_portfolio_profile', JSON.stringify(chefProfile));
-  }, [chefProfile]);
+    fetch('/api/data')
+      .then(res => {
+        if (!res.ok) throw new Error('API offline');
+        return res.json();
+      })
+      .then(data => {
+        if (data.profile) setChefProfile(data.profile);
+        if (data.sections) setSections(data.sections);
+        if (data.dishes) setDishes(data.dishes);
+        if (data.experience) setExperience(data.experience);
+        if (data.gallery) setGallery(data.gallery);
+        if (data.reviews) setReviews(data.reviews);
+        if (data.reservations) setReservations(data.reservations);
+      })
+      .catch(() => {
+        // Fallback to local storage (offline/dev mode)
+      });
+  }, []);
 
-  useEffect(() => {
-    localStorage.setItem('chef_portfolio_sections', JSON.stringify(sections));
-  }, [sections]);
+  // Sync to localStorage as local backup
+  useEffect(() => { localStorage.setItem('chef_portfolio_profile', JSON.stringify(chefProfile)); }, [chefProfile]);
+  useEffect(() => { localStorage.setItem('chef_portfolio_sections', JSON.stringify(sections)); }, [sections]);
+  useEffect(() => { localStorage.setItem('chef_portfolio_dishes', JSON.stringify(dishes)); }, [dishes]);
+  useEffect(() => { localStorage.setItem('chef_portfolio_experience', JSON.stringify(experience)); }, [experience]);
+  useEffect(() => { localStorage.setItem('chef_portfolio_gallery', JSON.stringify(gallery)); }, [gallery]);
+  useEffect(() => { localStorage.setItem('chef_portfolio_reviews', JSON.stringify(reviews)); }, [reviews]);
+  useEffect(() => { localStorage.setItem('chef_portfolio_reservations', JSON.stringify(reservations)); }, [reservations]);
 
-  useEffect(() => {
-    localStorage.setItem('chef_portfolio_dishes', JSON.stringify(dishes));
-  }, [dishes]);
-
-  useEffect(() => {
-    localStorage.setItem('chef_portfolio_experience', JSON.stringify(experience));
-  }, [experience]);
-
-  useEffect(() => {
-    localStorage.setItem('chef_portfolio_gallery', JSON.stringify(gallery));
-  }, [gallery]);
-
-  useEffect(() => {
-    localStorage.setItem('chef_portfolio_reviews', JSON.stringify(reviews));
-  }, [reviews]);
-
-  useEffect(() => {
-    localStorage.setItem('chef_portfolio_reservations', JSON.stringify(reservations));
-  }, [reservations]);
-
-  // Notification Toast Helper
+  // Toast notification helper
   const showToast = (msg) => {
     setToastMessage(msg);
-    setTimeout(() => {
-      setToastMessage(null);
-    }, 3500);
+    setTimeout(() => setToastMessage(null), 3500);
   };
 
   // Section toggle & edit
   const toggleSectionVisibility = (sectionId) => {
-    setSections((prev) => ({
-      ...prev,
-      [sectionId]: {
-        ...prev[sectionId],
-        visible: !prev[sectionId].visible
-      }
-    }));
+    const nextSections = {
+      ...sections,
+      [sectionId]: { ...sections[sectionId], visible: !sections[sectionId].visible }
+    };
+    setSections(nextSections);
+    fetch('/api/sections', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(nextSections)
+    }).catch(() => {});
     showToast(`Section visibility updated!`);
   };
 
   const updateSectionTitle = (sectionId, newTitle) => {
-    setSections((prev) => ({
-      ...prev,
-      [sectionId]: {
-        ...prev[sectionId],
-        title: newTitle
-      }
-    }));
+    const nextSections = {
+      ...sections,
+      [sectionId]: { ...sections[sectionId], title: newTitle }
+    };
+    setSections(nextSections);
+    fetch('/api/sections', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(nextSections)
+    }).catch(() => {});
     showToast(`Section title updated!`);
   };
 
   // Dish CRUD
   const addDish = (newDish) => {
-    const dishWithId = {
-      ...newDish,
-      id: `dish-${Date.now()}`
-    };
-    setDishes((prev) => [dishWithId, ...prev]);
+    const dishWithId = { ...newDish, id: `dish-${Date.now()}` };
+    const nextDishes = [dishWithId, ...dishes];
+    setDishes(nextDishes);
+    fetch('/api/dishes', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(nextDishes)
+    }).catch(() => {});
     showToast(`Dish "${newDish.name}" added successfully!`);
   };
 
   const updateDish = (updatedDish) => {
-    setDishes((prev) => prev.map((d) => (d.id === updatedDish.id ? updatedDish : d)));
+    const nextDishes = dishes.map((d) => (d.id === updatedDish.id ? updatedDish : d));
+    setDishes(nextDishes);
+    fetch('/api/dishes', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(nextDishes)
+    }).catch(() => {});
     showToast(`Dish "${updatedDish.name}" updated!`);
   };
 
   const deleteDish = (dishId) => {
-    setDishes((prev) => prev.filter((d) => d.id !== dishId));
+    const nextDishes = dishes.filter((d) => d.id !== dishId);
+    setDishes(nextDishes);
+    fetch('/api/dishes', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(nextDishes)
+    }).catch(() => {});
     showToast(`Dish deleted from menu.`);
   };
 
   // Profile update
   const updateProfile = (updatedProfile) => {
     setChefProfile(updatedProfile);
+    fetch('/api/profile', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedProfile)
+    }).catch(() => {});
     showToast(`Chef Profile updated!`);
+  };
+
+  // Experience set & update
+  const updateExperience = (nextExp) => {
+    setExperience(nextExp);
+    fetch('/api/experience', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(nextExp)
+    }).catch(() => {});
+  };
+
+  // Gallery set & update
+  const updateGallery = (nextGal) => {
+    setGallery(nextGal);
+    fetch('/api/gallery', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(nextGal)
+    }).catch(() => {});
+  };
+
+  // Reviews set & update
+  const updateReviews = (nextRev) => {
+    setReviews(nextRev);
+    fetch('/api/reviews', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(nextRev)
+    }).catch(() => {});
   };
 
   // Reservations CRUD
@@ -164,23 +218,39 @@ export const PortfolioProvider = ({ children }) => {
       status: 'Pending',
       createdAt: new Date().toISOString().split('T')[0]
     };
-    setReservations((prev) => [newBooking, ...prev]);
+    const nextRes = [newBooking, ...reservations];
+    setReservations(nextRes);
+    fetch('/api/reservations', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(nextRes)
+    }).catch(() => {});
     showToast(`Reservation request submitted! We will contact you soon.`);
   };
 
   const updateReservationStatus = (id, newStatus) => {
-    setReservations((prev) =>
-      prev.map((r) => (r.id === id ? { ...r, status: newStatus } : r))
-    );
+    const nextRes = reservations.map((r) => (r.id === id ? { ...r, status: newStatus } : r));
+    setReservations(nextRes);
+    fetch('/api/reservations', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(nextRes)
+    }).catch(() => {});
     showToast(`Reservation status updated to ${newStatus}`);
   };
 
   const deleteReservation = (id) => {
-    setReservations((prev) => prev.filter((r) => r.id !== id));
+    const nextRes = reservations.filter((r) => r.id !== id);
+    setReservations(nextRes);
+    fetch('/api/reservations', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(nextRes)
+    }).catch(() => {});
     showToast(`Reservation removed.`);
   };
 
-  // Reset Data to Defaults
+  // Reset Data
   const resetData = () => {
     localStorage.clear();
     setChefProfile(initialChefProfile);
@@ -190,6 +260,22 @@ export const PortfolioProvider = ({ children }) => {
     setGallery(initialGallery);
     setReviews(initialReviews);
     setReservations(initialReservations);
+
+    fetch('/api/reset', { method: 'POST' })
+      .then(res => res.json())
+      .then(resData => {
+        if (resData.data) {
+          setChefProfile(resData.data.profile);
+          setSections(resData.data.sections);
+          setDishes(resData.data.dishes);
+          setExperience(resData.data.experience);
+          setGallery(resData.data.gallery);
+          setReviews(resData.data.reviews);
+          setReservations(resData.data.reservations);
+        }
+      })
+      .catch(() => {});
+
     showToast(`All data reset to initial master dataset!`);
   };
 
@@ -206,19 +292,17 @@ export const PortfolioProvider = ({ children }) => {
         updateDish,
         deleteDish,
         experience,
-        setExperience,
+        setExperience: updateExperience,
         gallery,
-        setGallery,
+        setGallery: updateGallery,
         reviews,
-        setReviews,
+        setReviews: updateReviews,
         reservations,
         addReservation,
         updateReservationStatus,
         deleteReservation,
         selectedDishModal,
         setSelectedDishModal,
-        isAdminOpen,
-        setIsAdminOpen,
         toastMessage,
         showToast,
         resetData,
