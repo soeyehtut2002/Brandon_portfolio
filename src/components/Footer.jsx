@@ -49,18 +49,18 @@ ACHIEVEMENTS
             </div>
             <div>
               <h3 className="font-serif font-bold text-white text-lg">Chef {chefProfile.name}</h3>
-              <p className="text-xs text-orange-400">Fine Dining & Culinary Art</p>
+              <p className="text-xs text-orange-400">Culinary Portfolio & Creations</p>
             </div>
           </div>
 
           {/* Nav Links */}
           <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs uppercase tracking-wider text-white/50">
             {[
-              { label: 'Home',         href: '#hero' },
-              { label: 'Story',        href: '#bio' },
-              { label: 'Menu',         href: '#dishes' },
-              { label: 'Accolades',    href: '#experience' },
-              { label: 'Private Dining', href: '#contact' },
+              { label: 'Home',       href: '#hero' },
+              { label: 'Story',      href: '#bio' },
+              { label: 'Creations',  href: '#dishes' },
+              { label: 'Experience', href: '#experience' },
+              { label: 'Contact',    href: '#contact' },
             ].map(l => (
               <a key={l.label} href={l.href} className="hover:text-orange-400 transition-colors">{l.label}</a>
             ))}

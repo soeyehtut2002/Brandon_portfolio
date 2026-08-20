@@ -97,20 +97,8 @@ function DishModal({ editingDish, form, setForm, onSave, onClose }) {
           <div><label className={lbl}>Full Description</label><textarea rows={3} value={form.fullDescription} onChange={e => setForm(p => ({ ...p, fullDescription: e.target.value }))} className={ta} /></div>
           <div><label className={lbl}>Ingredients (comma-separated)</label><textarea rows={2} value={form.ingredients} onChange={e => setForm(p => ({ ...p, ingredients: e.target.value }))} className={ta} /></div>
           <div><label className={lbl}>Dietary Tags (comma-separated)</label><input value={form.dietary} onChange={e => setForm(p => ({ ...p, dietary: e.target.value }))} className={inp} /></div>
-          <div><label className={lbl}>Wine Pairing</label><input value={form.pairing} onChange={e => setForm(p => ({ ...p, pairing: e.target.value }))} className={inp} /></div>
-          <div><label className={lbl}>Chef's Note</label><textarea rows={2} value={form.chefNote} onChange={e => setForm(p => ({ ...p, chefNote: e.target.value }))} className={ta} /></div>
-          <div>
-            <label className={lbl}>Flavor Profile</label>
-            <div className="space-y-3 p-4 bg-theme-muted rounded-xl border border-theme">
-              {Object.entries(form.flavorProfile || {}).map(([key, val]) => (
-                <div key={key} className="flex items-center gap-3">
-                  <span className="capitalize text-xs text-theme-secondary w-20 shrink-0">{key}</span>
-                  <input type="range" min="0" max="100" value={val} onChange={e => setForm(p => ({ ...p, flavorProfile: { ...p.flavorProfile, [key]: Number(e.target.value) } }))} className="flex-1 accent-orange-500" />
-                  <span className="text-xs text-orange-500 font-bold w-8 text-right">{val}%</span>
-                </div>
-              ))}
-            </div>
-          </div>
+          <div><label className={lbl}>Wine Pairing / Drink Suggestion</label><input value={form.pairing} onChange={e => setForm(p => ({ ...p, pairing: e.target.value }))} className={inp} /></div>
+          <div><label className={lbl}>Preparation Note</label><textarea rows={2} value={form.chefNote} onChange={e => setForm(p => ({ ...p, chefNote: e.target.value }))} className={ta} /></div>
           <div className="flex gap-3 pt-2">
             <button type="button" onClick={onClose} className="flex-1 py-3 rounded-xl border border-theme text-theme-secondary text-xs font-semibold hover:bg-theme-muted transition-all">Cancel</button>
             <button type="submit" className="flex-1 py-3 rounded-xl bg-orange-500 text-white text-xs font-bold uppercase tracking-wider hover:bg-orange-600 transition-all">
@@ -191,11 +179,11 @@ export default function AdminPage() {
     { id: 'overview',   label: 'Overview',    icon: BarChart2 },
     { id: 'sections',   label: 'Sections',    icon: Layers },
     { id: 'dishes',     label: 'Dishes',      icon: UtensilsCrossed, count: dishes.length },
-    { id: 'experience', label: 'Awards',      icon: Award, count: experience.length },
+    { id: 'experience', label: 'Experience',  icon: Award, count: experience.length },
     { id: 'reviews',    label: 'Reviews',     icon: Star, count: reviews.length },
     { id: 'gallery',    label: 'Gallery',     icon: Camera, count: gallery.length },
     { id: 'profile',    label: 'Profile',     icon: User },
-    { id: 'bookings',   label: 'Bookings',    icon: CalendarCheck, count: reservations.length },
+    { id: 'bookings',   label: 'Inquiries',   icon: MessageSquare, count: reservations.length },
     { id: 'reset',      label: 'Reset',       icon: RotateCcw },
   ];
 

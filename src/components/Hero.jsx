@@ -34,12 +34,14 @@ export default function Hero() {
 
       {/* Main Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center">
-        {/* Award Badge */}
+        {/* Intern / Graduate Badge */}
         <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full mb-6 bg-white/15 border border-white/30 backdrop-blur-md shadow-lg">
           <div className="flex text-orange-300 gap-1">
             <Award className="w-4 h-4 text-orange-300" />
           </div>
-
+          <span className="text-xs uppercase tracking-widest text-orange-100 font-semibold">
+            Culinary Graduate & Aspiring Intern
+          </span>
         </div>
 
         {/* Title & Name */}
@@ -62,23 +64,23 @@ export default function Hero() {
             className="flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-orange-500 text-white font-bold uppercase tracking-wider text-xs hover:bg-orange-400 transition-all shadow-xl shadow-orange-500/30 hover:scale-105"
           >
             <Utensils className="w-4 h-4" />
-            <span>My Dishes</span>
+            <span>My Creations</span>
           </a>
 
-          {/* <a
+          <a
             href="#contact"
             className="flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-white/15 text-white hover:bg-white/25 border border-white/40 font-semibold uppercase tracking-wider text-xs transition-all hover:scale-105 backdrop-blur-sm"
           >
             <CalendarCheck className="w-4 h-4 text-orange-200" />
-            <span>Book a Table</span>
-          </a> */}
+            <span>Contact Me</span>
+          </a>
 
           <button
             onClick={handleCVDownload}
             className="flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-white/10 text-white hover:bg-white/20 border border-white/30 font-semibold uppercase tracking-wider text-xs transition-all hover:scale-105 backdrop-blur-sm"
           >
             <Download className="w-4 h-4 text-orange-200" />
-            <span>Get CV</span>
+            <span>Get Resume / CV</span>
           </button>
         </div>
 

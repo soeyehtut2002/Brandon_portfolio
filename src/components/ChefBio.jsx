@@ -38,8 +38,8 @@ export default function ChefBio() {
                 {/* Bottom Badge */}
                 <div className="absolute bottom-4 left-4 right-4 bg-theme-card/90 backdrop-blur-md p-3 sm:p-4 rounded-xl border border-theme shadow-lg flex items-center justify-between">
                   <div>
-                    <p className="text-xs uppercase tracking-wider text-orange-500 font-semibold">Our Restaurant</p>
-                    <p className="text-sm text-theme-primary font-serif font-semibold">{chefProfile.socials.restaurant}</p>
+                    <p className="text-xs uppercase tracking-wider text-orange-500 font-semibold">Education & Academy</p>
+                    <p className="text-sm text-theme-primary font-serif font-semibold">{chefProfile.socials?.restaurant || 'Culinary Academy Graduate'}</p>
                   </div>
                   <div className="p-2 rounded-lg bg-theme-muted text-orange-500">
                     <MapPin className="w-5 h-5" />

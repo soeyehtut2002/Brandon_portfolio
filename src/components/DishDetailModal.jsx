@@ -128,32 +128,6 @@ export default function DishDetailModal() {
               </div>
             )}
           </div>
-
-          {/* Section 5: Flavor Profile Bars */}
-          {dish.flavorProfile && (
-            <div className="p-4 sm:p-5 rounded-2xl bg-theme-muted border border-theme">
-              <h4 className="text-xs uppercase tracking-wider text-orange-500 font-bold mb-3 flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Flavor Profile</span>
-              </h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5">
-                {Object.entries(dish.flavorProfile).map(([key, val]) => (
-                  <div key={key}>
-                    <div className="flex justify-between text-xs font-medium mb-1">
-                      <span className="capitalize text-theme-secondary">{key}</span>
-                      <span className="text-orange-500 font-bold">{val}%</span>
-                    </div>
-                    <div className="w-full bg-theme-card h-1.5 rounded-full overflow-hidden border border-theme">
-                      <div
-                        className="bg-gradient-to-r from-orange-600 to-orange-400 h-full rounded-full transition-all duration-700"
-                        style={{ width: `${val}%` }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
 
         {/* ── Footer Bar with Red Close Button (matches screenshot 1) ── */}

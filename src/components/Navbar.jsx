@@ -22,12 +22,12 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'Story',          href: '#bio',        visible: sections.bio?.visible },
-    { name: 'Dishes',         href: '#dishes',     visible: sections.dishes?.visible },
-    { name: 'Accolades',      href: '#experience', visible: sections.experience?.visible },
-    { name: 'Gallery',        href: '#gallery',    visible: sections.gallery?.visible },
-    { name: 'Reviews',        href: '#reviews',    visible: sections.reviews?.visible },
-    { name: 'Private Dining', href: '#contact',    visible: sections.contact?.visible },
+    { name: 'Story',       href: '#bio',        visible: sections.bio?.visible },
+    { name: 'Dishes',      href: '#dishes',     visible: sections.dishes?.visible },
+    { name: 'Experience',  href: '#experience', visible: sections.experience?.visible },
+    { name: 'Gallery',     href: '#gallery',    visible: sections.gallery?.visible },
+    { name: 'Reviews',     href: '#reviews',    visible: sections.reviews?.visible },
+    { name: 'Contact',     href: '#contact',    visible: sections.contact?.visible },
   ].filter(l => l.visible);
 
   const handleCVDownload = () => {
