@@ -48,7 +48,7 @@ export default function Hero() {
 
         {/* Title & Name */}
         <h1 className="text-4xl sm:text-6xl md:text-7xl font-serif font-extrabold text-white tracking-tight leading-[1.15] mb-4 drop-shadow-lg">
-          Chef <span className="orange-gradient-text" style={{WebkitTextFillColor: 'unset', background: 'none', color: '#ffb87a'}}>{chefProfile.name}</span>
+          Chef <span className="orange-gradient-text" style={{ WebkitTextFillColor: 'unset', background: 'none', color: '#ffb87a' }}>{chefProfile.name}</span>
         </h1>
 
         <p className="text-lg sm:text-xl md:text-2xl text-orange-100 font-serif italic max-w-3xl mb-6 drop-shadow">
@@ -69,13 +69,13 @@ export default function Hero() {
             <span>Our Dishes</span>
           </a>
 
-          <a
+          {/* <a
             href="#contact"
             className="flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-white/15 text-white hover:bg-white/25 border border-white/40 font-semibold uppercase tracking-wider text-xs transition-all hover:scale-105 backdrop-blur-sm"
           >
             <CalendarCheck className="w-4 h-4 text-orange-200" />
             <span>Book a Table</span>
-          </a>
+          </a> */}
 
           <button
             onClick={handleCVDownload}
