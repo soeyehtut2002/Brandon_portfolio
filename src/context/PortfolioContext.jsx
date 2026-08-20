@@ -15,7 +15,7 @@ export const PortfolioProvider = ({ children }) => {
   // Primary States
   const [chefProfile, setChefProfile] = useState(() => {
     const saved = localStorage.getItem('chef_portfolio_profile');
-    return saved ? JSON.parse(saved) : initialChefProfile;
+    return saved ? { ...initialChefProfile, ...JSON.parse(saved) } : initialChefProfile;
   });
 
   const [sections, setSections] = useState(() => {
@@ -77,7 +77,7 @@ export const PortfolioProvider = ({ children }) => {
         return res.json();
       })
       .then(data => {
-        if (data.profile) setChefProfile(data.profile);
+        if (data.profile) setChefProfile(prev => ({ ...initialChefProfile, ...prev, ...data.profile }));
         if (data.sections) setSections(data.sections);
         if (data.dishes) setDishes(data.dishes);
         if (data.experience) setExperience(data.experience);

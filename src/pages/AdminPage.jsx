@@ -149,6 +149,12 @@ export default function AdminPage() {
     flavorProfile: { umami: 80, richness: 75, acidity: 60, sweetness: 30, texture: 85 }
   });
   const [profileForm, setProfileForm] = useState({ ...chefProfile });
+
+  React.useEffect(() => {
+    if (chefProfile) {
+      setProfileForm({ ...chefProfile });
+    }
+  }, [chefProfile]);
   const [newGallery, setNewGallery] = useState({ title: '', category: 'Plated Art', image: '' });
   const [newReview, setNewReview] = useState({ critic: '', publication: '', quote: '', rating: 5, avatar: 'https://i.pravatar.cc/150?img=10' });
   const [editReview, setEditReview] = useState(null);
