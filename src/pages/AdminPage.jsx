@@ -90,9 +90,8 @@ function DishModal({ editingDish, form, setForm, onSave, onClose }) {
                 {['Starters', 'Main Course', 'Desserts', 'Signature Drinks', 'Tasting Menu'].map(c => <option key={c}>{c}</option>)}
               </select>
             </div>
-            <div><label className={lbl}>Price</label><input value={form.price} onChange={e => setForm(p => ({ ...p, price: e.target.value }))} className={inp} /></div>
             <div><label className={lbl}>Prep Time</label><input value={form.prepTime} onChange={e => setForm(p => ({ ...p, prepTime: e.target.value }))} className={inp} /></div>
-            <div className="sm:col-span-2"><label className={lbl}>Badge</label><input value={form.badge} onChange={e => setForm(p => ({ ...p, badge: e.target.value }))} className={inp} /></div>
+            <div><label className={lbl}>Badge</label><input value={form.badge} onChange={e => setForm(p => ({ ...p, badge: e.target.value }))} className={inp} /></div>
           </div>
           <div><label className={lbl}>Short Description *</label><textarea required rows={2} value={form.shortDescription} onChange={e => setForm(p => ({ ...p, shortDescription: e.target.value }))} className={ta} /></div>
           <div><label className={lbl}>Full Description</label><textarea rows={3} value={form.fullDescription} onChange={e => setForm(p => ({ ...p, fullDescription: e.target.value }))} className={ta} /></div>
@@ -357,7 +356,6 @@ export default function AdminPage() {
                     <div key={dish.id} className={`${card} flex flex-col`}>
                       <div className="relative h-40">
                         <img src={dish.image} alt={dish.name} className="w-full h-full object-cover" />
-                        <div className="absolute top-2 right-2 px-2.5 py-1 rounded-full text-[10px] font-bold bg-orange-500 text-white">{dish.price}</div>
                         <div className="absolute top-2 left-2 px-2.5 py-1 rounded-full text-[10px] font-bold bg-black/60 text-white">{dish.category}</div>
                       </div>
                       <div className="p-4 flex-grow flex flex-col justify-between gap-3">

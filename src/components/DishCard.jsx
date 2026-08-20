@@ -8,7 +8,7 @@ export default function DishCard({ dish }) {
   return (
     <div
       onClick={() => setSelectedDishModal(dish)}
-      className="group glass-card rounded-2xl overflow-hidden cursor-pointer flex flex-col h-full border border-theme hover:border-orange-400/60 transition-all duration-500"
+      className="group glass-card rounded-2xl overflow-hidden cursor-pointer flex flex-col h-full border border-theme hover:border-orange-400/60 transition-all duration-500 shadow-md hover:shadow-xl"
     >
       {/* Image */}
       <div className="relative h-56 sm:h-64 lg:h-72 w-full overflow-hidden bg-theme-secondary">
@@ -19,18 +19,15 @@ export default function DishCard({ dish }) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 
-        {/* Badges */}
-        <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
-          {dish.badge && (
+        {/* Badge */}
+        {dish.badge && (
+          <div className="absolute top-3 left-3 pointer-events-none">
             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-theme-card/90 text-orange-500 border border-theme backdrop-blur-md shadow-md">
               <Sparkles className="w-3 h-3" />
               {dish.badge}
             </span>
-          )}
-          <span className="ml-auto px-3 py-1 rounded-full text-xs font-extrabold bg-orange-500 text-white shadow-md">
-            {dish.price}
-          </span>
-        </div>
+          </div>
+        )}
 
         {/* Hover overlay */}
         <div className="absolute inset-0 bg-orange-900/50 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -46,10 +43,12 @@ export default function DishCard({ dish }) {
         <div>
           <div className="flex items-center justify-between text-xs mb-1.5">
             <span className="uppercase tracking-widest text-orange-500 font-semibold">{dish.category}</span>
-            <div className="flex items-center gap-1 text-theme-muted">
-              <Clock className="w-3.5 h-3.5" />
-              <span>{dish.prepTime}</span>
-            </div>
+            {dish.prepTime && (
+              <div className="flex items-center gap-1 text-theme-muted">
+                <Clock className="w-3.5 h-3.5" />
+                <span>{dish.prepTime}</span>
+              </div>
+            )}
           </div>
           <h3 className="text-lg font-serif font-bold text-theme-primary group-hover:text-orange-500 transition-colors leading-snug line-clamp-2">
             {dish.name}

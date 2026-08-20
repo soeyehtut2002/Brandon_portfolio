@@ -22,7 +22,7 @@ export default function Gallery() {
             <span>{sections.gallery.title || "Visual Masterpieces"}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-serif font-bold text-theme-primary">
-            Our Photos
+            My Photos
           </h2>
           <div className="divider-orange" />
         </div>
@@ -33,11 +33,10 @@ export default function Gallery() {
             <button
               key={cat}
               onClick={() => setActiveTab(cat)}
-              className={`px-4 sm:px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all whitespace-nowrap shrink-0 ${
-                activeTab === cat
+              className={`px-4 sm:px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all whitespace-nowrap shrink-0 ${activeTab === cat
                   ? 'bg-orange-500 text-white shadow-md'
                   : 'glass-card text-theme-secondary border border-theme hover:text-orange-500 hover:border-orange-300'
-              }`}
+                }`}
             >
               {cat}
             </button>

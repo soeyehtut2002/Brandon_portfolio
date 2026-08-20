@@ -23,14 +23,11 @@ function SlideCard({ dish, onOpen }) {
 
         {/* Badges */}
         <div className="absolute top-3 left-3 right-3 flex justify-between items-start pointer-events-none">
-          {dish.badge ? (
+          {dish.badge && (
             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-theme-card/90 text-orange-500 border border-theme backdrop-blur-md shadow">
               <Sparkles className="w-3 h-3" /> {dish.badge}
             </span>
-          ) : <span />}
-          <span className="px-3 py-1 rounded-full text-xs font-extrabold bg-orange-500 text-white shadow-md">
-            {dish.price}
-          </span>
+          )}
         </div>
 
         {/* Hover Overlay */}

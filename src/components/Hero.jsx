@@ -39,9 +39,7 @@ export default function Hero() {
           <div className="flex text-orange-300 gap-1">
             <Award className="w-4 h-4 text-orange-300" />
           </div>
-          <span className="text-xs uppercase tracking-widest text-orange-100 font-semibold">
-            Award-Winning Executive Chef
-          </span>
+
         </div>
 
         {/* Title & Name */}
@@ -64,7 +62,7 @@ export default function Hero() {
             className="flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-orange-500 text-white font-bold uppercase tracking-wider text-xs hover:bg-orange-400 transition-all shadow-xl shadow-orange-500/30 hover:scale-105"
           >
             <Utensils className="w-4 h-4" />
-            <span>Our Dishes</span>
+            <span>My Dishes</span>
           </a>
 
           {/* <a
