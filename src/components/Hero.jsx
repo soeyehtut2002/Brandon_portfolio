@@ -1,12 +1,12 @@
 import React from 'react';
 import { usePortfolio } from '../context/PortfolioContext';
-import { Star, CalendarCheck, Utensils, Download } from 'lucide-react';
+import { Star, CalendarCheck, Utensils, Download, Award } from 'lucide-react';
 
 export default function Hero() {
   const { chefProfile, sections } = usePortfolio();
 
   const handleCVDownload = () => {
-    const cvContent = `CURRICULUM VITAE\n${'='.repeat(40)}\nChef ${chefProfile.name}\n${chefProfile.title || 'Executive Chef'}\n\nPhilosophy:\n${chefProfile.philosophy || ''}\n\nAchievements:\n• ${chefProfile.michelinStars} Michelin Stars\n• ${chefProfile.yearsExperience}+ Years Experience\n• ${chefProfile.signatureDishesCount}+ Signature Recipes`.trim();
+    const cvContent = `CURRICULUM VITAE\n${'='.repeat(40)}\nChef ${chefProfile.name}\n${chefProfile.title || 'Executive Chef'}\n\nPhilosophy:\n${chefProfile.philosophy || ''}\n\nAchievements:\n• ${chefProfile.yearsExperience}+ Years Experience\n• ${chefProfile.signatureDishesCount}+ Signature Recipes`.trim();
     const blob = new Blob([cvContent], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');

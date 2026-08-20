@@ -182,7 +182,7 @@ export default function AdminPage() {
 
   /* CV download */
   const downloadCV = () => {
-    const txt = `CURRICULUM VITAE\n${'='.repeat(40)}\nChef ${chefProfile.name}\n${chefProfile.title || ''}\n\nContact:\nEmail: ${chefProfile.socials?.email}\nPhone: ${chefProfile.socials?.phone}\n\nChef's Belief:\n${chefProfile.philosophy}\n\nAchievements:\n- ${chefProfile.michelinStars} Michelin Stars\n- ${chefProfile.yearsExperience}+ Years Experience\n- ${chefProfile.signatureDishesCount}+ Dishes Created`.trim();
+    const txt = `CURRICULUM VITAE\n${'='.repeat(40)}\nChef ${chefProfile.name}\n${chefProfile.title || ''}\n\nContact:\nEmail: ${chefProfile.socials?.email}\nPhone: ${chefProfile.socials?.phone}\n\nChef's Belief:\n${chefProfile.philosophy}\n\nAchievements:\n- ${chefProfile.yearsExperience}+ Years Experience\n- ${chefProfile.signatureDishesCount}+ Dishes Created`.trim();
     const blob = new Blob([txt], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a'); a.href = url; a.download = `Chef_${chefProfile.name.replace(' ', '_')}_CV.txt`; a.click(); URL.revokeObjectURL(url);

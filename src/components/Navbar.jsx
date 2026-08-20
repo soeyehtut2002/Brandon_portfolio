@@ -52,7 +52,6 @@ ${chefProfile.philosophy || ''}
 
 ACHIEVEMENTS
 ------------
-• ${chefProfile.michelinStars} Michelin Stars
 • ${chefProfile.yearsExperience}+ Years of Culinary Mastery
 • ${chefProfile.signatureDishesCount}+ Signature Recipes Created
       `.trim();
