@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -7,29 +8,38 @@ export default {
   theme: {
     extend: {
       colors: {
-        gold: {
-          400: '#e5c158',
-          500: '#d4af37',
-          600: '#b89228',
-          700: '#94721c',
+        orange: {
+          50:  '#fff7f0',
+          100: '#ffedd9',
+          200: '#ffd5ad',
+          300: '#ffb87a',
+          400: '#ff8f3f',
+          500: '#f97316',
+          600: '#ea6100',
+          700: '#c44e00',
+          800: '#9c3e00',
+          900: '#7c3200',
         },
-        obsidian: {
-          950: '#0a0b0d',
-          900: '#0f1115',
-          800: '#161920',
-          700: '#212632',
-          600: '#2f3545',
+        cream: {
+          50:  '#ffffff',
+          100: '#fdfaf6',
+          200: '#faf4ec',
+          300: '#f5e8d5',
+          400: '#eddcbd',
         },
-        amberGold: '#E6C280',
-        silkCream: '#F9F6F0',
+        charcoal: {
+          700: '#374151',
+          800: '#1f2937',
+          900: '#111827',
+        },
       },
       fontFamily: {
-        serif: ['Playfair Display', 'Georgia', 'serif'],
-        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+        serif: ['Italiana', 'Georgia', 'serif'],
+        sans: ['Lato', 'Helvetica Neue', 'sans-serif'],
       },
       backgroundImage: {
         'radial-gradient': 'radial-gradient(var(--tw-gradient-stops))',
-        'gold-glow': 'radial-gradient(circle, rgba(212,175,55,0.15) 0%, rgba(15,17,21,0) 70%)',
+        'orange-glow': 'radial-gradient(circle, rgba(249,115,22,0.15) 0%, rgba(255,255,255,0) 70%)',
       }
     },
   },

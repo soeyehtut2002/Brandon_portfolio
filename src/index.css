@@ -2,61 +2,154 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================
+   CSS VARIABLES - Light Mode (Default)
+   ============================================ */
+:root {
+  --bg-primary:   #fdfaf6;
+  --bg-secondary: #faf4ec;
+  --bg-card:      #ffffff;
+  --bg-muted:     #fff7f0;
+  --border:       rgba(249, 115, 22, 0.15);
+  --border-hover: rgba(249, 115, 22, 0.45);
+  --text-primary: #1f2937;
+  --text-secondary: #374151;
+  --text-muted:   #6b7280;
+  --accent:       #f97316;
+  --accent-light: #ffedd9;
+  --shadow:       rgba(249, 115, 22, 0.12);
+}
+
+/* ============================================
+   CSS VARIABLES - Dark Mode
+   ============================================ */
+.dark {
+  --bg-primary:   #0f1117;
+  --bg-secondary: #161b27;
+  --bg-card:      #1e2435;
+  --bg-muted:     #252d40;
+  --border:       rgba(249, 115, 22, 0.2);
+  --border-hover: rgba(249, 115, 22, 0.55);
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted:   #94a3b8;
+  --accent:       #fb923c;
+  --accent-light: rgba(249, 115, 22, 0.15);
+  --shadow:       rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
 @layer base {
   body {
-    @apply bg-obsidian-950 text-stone-200 overflow-x-hidden;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    @apply overflow-x-hidden transition-colors duration-300;
   }
 
   h1, h2, h3, h4, .font-serif {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Italiana', Georgia, serif;
   }
 }
 
-/* Glassmorphism utility */
+/* ============================================
+   THEME-AWARE UTILITY CLASSES
+   ============================================ */
+.bg-theme-primary   { background-color: var(--bg-primary); }
+.bg-theme-secondary { background-color: var(--bg-secondary); }
+.bg-theme-card      { background-color: var(--bg-card); }
+.bg-theme-muted     { background-color: var(--bg-muted); }
+.text-theme-primary   { color: var(--text-primary); }
+.text-theme-secondary { color: var(--text-secondary); }
+.text-theme-muted     { color: var(--text-muted); }
+.border-theme { border-color: var(--border); }
+
+/* ============================================
+   GLASS PANEL
+   ============================================ */
 .glass-panel {
-  background: rgba(22, 25, 32, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
-.glass-panel-gold {
-  background: rgba(212, 175, 55, 0.05);
+.glass-panel-orange {
+  background: var(--accent-light);
+  border: 1px solid var(--border-hover);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(212, 175, 55, 0.25);
 }
 
 .glass-card {
-  background: linear-gradient(135deg, rgba(30, 35, 45, 0.6) 0%, rgba(15, 17, 21, 0.8) 100%);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 12px var(--shadow);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
-  border-color: rgba(212, 175, 55, 0.4);
-  box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.15);
+  border-color: var(--border-hover);
+  box-shadow: 0 12px 32px -8px var(--shadow);
   transform: translateY(-4px);
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #0a0b0d;
-}
-::-webkit-scrollbar-thumb {
-  background: #2a2e39;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #d4af37;
-}
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-/* Glowing text effects */
-.gold-gradient-text {
-  background: linear-gradient(135deg, #F9F6F0 0%, #E6C280 50%, #d4af37 100%);
+/* Hide scrollbar but allow scrolling (category pills) */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+
+/* ============================================
+   TEXT & DECORATION UTILITIES
+   ============================================ */
+.orange-gradient-text {
+  background: linear-gradient(135deg, #ea6100 0%, #f97316 50%, #ff8f3f 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.divider-orange {
+  width: 4rem;
+  height: 3px;
+  background: linear-gradient(to right, transparent, var(--accent), transparent);
+  margin: 1rem auto 0;
+}
+
+/* ============================================
+   THEME INPUT STYLES
+   ============================================ */
+.input-theme {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  transition: border-color 0.2s;
+}
+
+.input-theme:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.input-theme::placeholder {
+  color: var(--text-muted);
+}
+
+/* ============================================
+   DARK MODE TOGGLE ANIMATION
+   ============================================ */
+.theme-toggle-track {
+  transition: background-color 0.3s ease;
+}
+
+.theme-toggle-thumb {
+  transition: transform 0.3s ease;
 }

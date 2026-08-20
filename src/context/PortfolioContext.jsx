@@ -53,6 +53,23 @@ export const PortfolioProvider = ({ children }) => {
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
 
+  // Dark Mode
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem('chef_portfolio_darkmode');
+    return saved ? JSON.parse(saved) : false;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('chef_portfolio_darkmode', JSON.stringify(darkMode));
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
+
+  const toggleDarkMode = () => setDarkMode(prev => !prev);
+
   // Sync to localStorage
   useEffect(() => {
     localStorage.setItem('chef_portfolio_profile', JSON.stringify(chefProfile));
@@ -204,7 +221,9 @@ export const PortfolioProvider = ({ children }) => {
         setIsAdminOpen,
         toastMessage,
         showToast,
-        resetData
+        resetData,
+        darkMode,
+        toggleDarkMode
       }}
     >
       {children}

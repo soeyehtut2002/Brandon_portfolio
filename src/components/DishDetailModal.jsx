@@ -1,108 +1,73 @@
 import React from 'react';
 import { usePortfolio } from '../context/PortfolioContext';
 import {
-  X,
-  Clock,
-  Wine,
-  Sparkles,
-  UtensilsCrossed,
-  Quote,
-  CheckCircle2,
-  CalendarCheck
+  X, Clock, Wine, Sparkles, UtensilsCrossed,
+  Quote, CheckCircle2, CalendarCheck
 } from 'lucide-react';
 
 export default function DishDetailModal() {
   const { selectedDishModal, setSelectedDishModal } = usePortfolio();
-
   if (!selectedDishModal) return null;
 
   const dish = selectedDishModal;
 
   const handleBookShortcut = () => {
     setSelectedDishModal(null);
-    const contactElem = document.getElementById('contact');
-    if (contactElem) {
-      contactElem.scrollIntoView({ behavior: 'smooth' });
-    }
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-obsidian-950/80 backdrop-blur-md animate-fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/70 backdrop-blur-md">
       <div
-        className="relative w-full max-w-4xl bg-obsidian-900 border border-gold-500/30 rounded-3xl overflow-hidden shadow-2xl my-8 max-h-[90vh] flex flex-col"
-        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-4xl glass-card border border-theme rounded-3xl overflow-hidden shadow-2xl my-4 sm:my-8 max-h-[92vh] flex flex-col"
+        onClick={e => e.stopPropagation()}
       >
-        {/* Close Button */}
-        <button
-          onClick={() => setSelectedDishModal(null)}
-          className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-obsidian-950/80 text-stone-300 hover:text-gold-400 hover:bg-obsidian-950 border border-stone-700/60 transition-all"
-          aria-label="Close modal"
-        >
+        {/* Close */}
+        <button onClick={() => setSelectedDishModal(null)}
+          className="absolute top-3 right-3 z-20 p-2 rounded-full bg-theme-card text-theme-secondary hover:text-orange-500 border border-theme shadow-sm transition-all"
+          aria-label="Close">
           <X className="w-5 h-5" />
         </button>
 
-        {/* Scrollable Container */}
         <div className="overflow-y-auto flex-grow">
-          {/* Hero Image Section */}
-          <div className="relative h-72 sm:h-96 w-full">
-            <img
-              src={dish.image}
-              alt={dish.name}
-              className="w-full h-full object-cover object-center filter brightness-95"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-obsidian-900 via-obsidian-900/30 to-transparent" />
-
-            <div className="absolute bottom-6 left-6 right-6">
+          {/* Hero Image */}
+          <div className="relative h-56 sm:h-80 lg:h-96 w-full shrink-0">
+            <img src={dish.image} alt={dish.name}
+              className="w-full h-full object-cover object-center" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent" />
+            <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6">
               <div className="flex flex-wrap items-center gap-2 mb-2">
-                <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-gold-500 text-obsidian-950">
+                <span className="px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-orange-500 text-white">
                   {dish.category}
                 </span>
                 {dish.badge && (
-                  <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-obsidian-950/80 text-gold-400 border border-gold-500/40 backdrop-blur-md">
+                  <span className="px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-white/90 text-orange-500 border border-orange-200">
                     {dish.badge}
                   </span>
                 )}
               </div>
-
-              <h2 className="text-2xl sm:text-4xl font-serif font-bold text-stone-100">
-                {dish.name}
-              </h2>
+              <h2 className="text-xl sm:text-3xl lg:text-4xl font-serif font-bold text-white">{dish.name}</h2>
             </div>
           </div>
 
-          {/* Details Body Grid */}
-          <div className="p-6 sm:p-8 space-y-8">
-            {/* Top Stat Row */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 rounded-2xl glass-panel border border-obsidian-800">
+          <div className="p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8">
+            {/* Stats */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-theme-muted border border-theme">
               <div>
-                <div className="text-[11px] uppercase tracking-wider text-stone-400">
-                  Investment
-                </div>
-                <div className="text-xl font-serif font-bold text-gold-400">
-                  {dish.price}
-                </div>
+                <div className="text-[11px] uppercase tracking-wider text-theme-muted">Price</div>
+                <div className="text-lg sm:text-xl font-serif font-bold text-orange-500">{dish.price}</div>
               </div>
-
               <div>
-                <div className="text-[11px] uppercase tracking-wider text-stone-400 flex items-center gap-1">
-                  <Clock className="w-3 h-3 text-gold-400" />
-                  <span>Prep Time</span>
+                <div className="text-[11px] uppercase tracking-wider text-theme-muted flex items-center gap-1">
+                  <Clock className="w-3 h-3 text-orange-400" /> Prep Time
                 </div>
-                <div className="text-base font-semibold text-stone-200 mt-0.5">
-                  {dish.prepTime}
-                </div>
+                <div className="text-sm font-semibold text-theme-primary mt-0.5">{dish.prepTime}</div>
               </div>
-
-              <div className="col-span-2 sm:col-span-2">
-                <div className="text-[11px] uppercase tracking-wider text-stone-400 mb-1">
-                  Dietary Accommodations
-                </div>
+              <div className="col-span-2">
+                <div className="text-[11px] uppercase tracking-wider text-theme-muted mb-1">Dietary</div>
                 <div className="flex flex-wrap gap-1.5">
                   {dish.dietary?.map((tag, idx) => (
-                    <span
-                      key={idx}
-                      className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-obsidian-800 text-stone-300 border border-obsidian-700"
-                    >
+                    <span key={idx} className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-theme-card text-orange-500 border border-theme">
                       {tag}
                     </span>
                   ))}
@@ -112,35 +77,28 @@ export default function DishDetailModal() {
 
             {/* Description */}
             <div>
-              <h3 className="text-lg font-serif font-bold text-stone-100 mb-2 flex items-center gap-2">
-                <UtensilsCrossed className="w-4 h-4 text-gold-400" />
-                <span>Culinary Story</span>
+              <h3 className="text-base sm:text-lg font-serif font-bold text-theme-primary mb-2 flex items-center gap-2">
+                <UtensilsCrossed className="w-4 h-4 text-orange-400" /> About this Dish
               </h3>
-              <p className="text-stone-300 text-sm leading-relaxed font-light">
-                {dish.fullDescription || dish.shortDescription}
-              </p>
+              <p className="text-theme-secondary text-sm leading-relaxed font-light">{dish.fullDescription || dish.shortDescription}</p>
             </div>
 
-            {/* Flavor Profile Sliders */}
+            {/* Flavor Profile */}
             {dish.flavorProfile && (
-              <div className="p-6 rounded-2xl glass-panel border border-obsidian-800">
-                <h3 className="text-sm font-serif font-bold text-stone-200 uppercase tracking-wider mb-4 flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-gold-400" />
-                  <span>Sensory Flavor Profile</span>
+              <div className="p-4 sm:p-6 rounded-2xl bg-theme-muted border border-theme">
+                <h3 className="text-sm font-serif font-bold text-theme-primary uppercase tracking-wider mb-4 flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-orange-400" /> Flavor Profile
                 </h3>
-
                 <div className="space-y-3">
                   {Object.entries(dish.flavorProfile).map(([key, val]) => (
                     <div key={key}>
                       <div className="flex justify-between text-xs font-medium mb-1">
-                        <span className="capitalize text-stone-300">{key}</span>
-                        <span className="text-gold-400">{val}%</span>
+                        <span className="capitalize text-theme-secondary">{key}</span>
+                        <span className="text-orange-500">{val}%</span>
                       </div>
-                      <div className="w-full bg-obsidian-950 h-2 rounded-full overflow-hidden border border-obsidian-800">
-                        <div
-                          className="bg-gradient-to-r from-gold-600 to-gold-400 h-full rounded-full transition-all duration-1000"
-                          style={{ width: `${val}%` }}
-                        />
+                      <div className="w-full bg-theme-card h-2 rounded-full overflow-hidden border border-theme">
+                        <div className="bg-gradient-to-r from-orange-600 to-orange-400 h-full rounded-full transition-all duration-1000"
+                          style={{ width: `${val}%` }} />
                       </div>
                     </div>
                   ))}
@@ -148,19 +106,14 @@ export default function DishDetailModal() {
               </div>
             )}
 
-            {/* Ingredients List */}
+            {/* Ingredients */}
             {dish.ingredients && (
               <div>
-                <h3 className="text-lg font-serif font-bold text-stone-100 mb-3">
-                  Key Artisanal Ingredients
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <h3 className="text-base sm:text-lg font-serif font-bold text-theme-primary mb-3">Key Ingredients</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {dish.ingredients.map((ing, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center gap-2.5 p-3 rounded-xl bg-obsidian-950/80 border border-obsidian-800 text-xs text-stone-200"
-                    >
-                      <CheckCircle2 className="w-4 h-4 text-gold-400 shrink-0" />
+                    <div key={idx} className="flex items-center gap-2.5 p-2.5 sm:p-3 rounded-xl glass-card border border-theme text-xs text-theme-primary">
+                      <CheckCircle2 className="w-4 h-4 text-orange-400 shrink-0" />
                       <span>{ing}</span>
                     </div>
                   ))}
@@ -168,33 +121,24 @@ export default function DishDetailModal() {
               </div>
             )}
 
-            {/* Wine Pairing & Chef Note */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Pairing & Chef Note */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
               {dish.pairing && (
-                <div className="p-5 rounded-2xl bg-obsidian-950 border border-obsidian-800 flex items-start gap-3">
-                  <div className="p-2.5 rounded-xl bg-gold-500/10 text-gold-400 shrink-0">
+                <div className="p-4 sm:p-5 rounded-2xl bg-theme-muted border border-theme flex items-start gap-3">
+                  <div className="p-2.5 rounded-xl bg-theme-card text-orange-500 shrink-0 border border-theme">
                     <Wine className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-xs uppercase tracking-wider text-gold-400 font-semibold mb-1">
-                      Sommelier Wine Pairing
-                    </h4>
-                    <p className="text-xs text-stone-300 font-serif leading-relaxed">
-                      {dish.pairing}
-                    </p>
+                    <h4 className="text-xs uppercase tracking-wider text-orange-500 font-semibold mb-1">Wine Pairing</h4>
+                    <p className="text-xs text-theme-secondary font-serif leading-relaxed">{dish.pairing}</p>
                   </div>
                 </div>
               )}
-
               {dish.chefNote && (
-                <div className="p-5 rounded-2xl bg-obsidian-950 border border-obsidian-800 relative">
-                  <Quote className="w-6 h-6 text-gold-500/20 absolute top-3 right-3" />
-                  <h4 className="text-xs uppercase tracking-wider text-gold-400 font-semibold mb-1">
-                    Chef's Craft Note
-                  </h4>
-                  <p className="text-xs italic text-stone-300 font-serif leading-relaxed">
-                    "{dish.chefNote}"
-                  </p>
+                <div className="p-4 sm:p-5 rounded-2xl bg-theme-muted border border-theme relative">
+                  <Quote className="w-6 h-6 text-orange-200 dark:text-orange-900/40 absolute top-3 right-3" />
+                  <h4 className="text-xs uppercase tracking-wider text-orange-500 font-semibold mb-1">Chef's Note</h4>
+                  <p className="text-xs italic text-theme-secondary font-serif leading-relaxed">"{dish.chefNote}"</p>
                 </div>
               )}
             </div>
@@ -202,17 +146,14 @@ export default function DishDetailModal() {
         </div>
 
         {/* Footer CTA */}
-        <div className="p-4 sm:p-6 bg-obsidian-950 border-t border-obsidian-800 flex items-center justify-between">
-          <div className="text-xs text-stone-400">
-            Experiencing Chef {dish.name}
+        <div className="p-4 sm:p-5 bg-theme-muted border-t border-theme flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
+          <div className="text-xs text-theme-muted hidden sm:block">
+            {dish.name} — Chef's Signature Creation
           </div>
-
-          <button
-            onClick={handleBookShortcut}
-            className="flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-gold-500 to-gold-600 text-obsidian-950 font-bold uppercase tracking-wider text-xs shadow-lg hover:from-gold-400 hover:to-gold-500 transition-all"
-          >
+          <button onClick={handleBookShortcut}
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-orange-500 text-white font-bold uppercase tracking-wider text-xs shadow-lg hover:bg-orange-600 transition-all">
             <CalendarCheck className="w-4 h-4" />
-            <span>Reserve Table for This Creation</span>
+            <span>Book a Table</span>
           </button>
         </div>
       </div>

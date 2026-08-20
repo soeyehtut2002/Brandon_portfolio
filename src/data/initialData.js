@@ -1,207 +1,171 @@
 export const initialChefProfile = {
   name: "Antoine Laurent",
-  title: "Master Executive Chef & Gastronomy Innovator",
+  title: "Head Chef & Restaurant Owner",
   michelinStars: 3,
   yearsExperience: 18,
   signatureDishesCount: 42,
-  tagline: "Elevating Culinary Traditions into Modern Avant-Garde Masterpieces",
-  subtitle: "Blending classic French techniques with Nordic seasonality and Asian precision.",
+  tagline: "Good food made with care, skill, and the best ingredients.",
+  subtitle: "French cooking methods combined with Japanese and Nordic flavors.",
   heroImage: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=1920&q=80",
   bioPortrait: "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=1000&q=80",
-  philosophy: "Every dish tells a story of terroir, heritage, and emotion. Cooking is not merely feeding the body; it is inspiring the soul through texture, aroma, and harmony.",
+  philosophy: "Every dish has a story. Cooking is not just about filling a plate — it is about creating a moment that people remember through taste, smell, and feeling.",
   socials: {
     instagram: "@chef_antoine_laurent",
     twitter: "@chef_laurent",
-    email: "concierge@chefantoinelaurent.com",
+    email: "hello@chefantoinelaurent.com",
     phone: "+33 1 42 68 55 00",
     restaurant: "L'Étoile D'Or, Paris & Tokyo"
   }
 };
 
 export const initialSections = {
-  hero: { id: "hero", name: "Hero Banner", visible: true, title: "Welcome" },
-  bio: { id: "bio", name: "Chef Story & Philosophy", visible: true, title: "The Mastermind" },
-  dishes: { id: "dishes", name: "Signature Dishes & Menu", visible: true, title: "Culinary Gallery" },
-  experience: { id: "experience", name: "Experience & Accolades", visible: true, title: "Recognitions" },
-  gallery: { id: "gallery", name: "Atmosphere & Visuals", visible: true, title: "Visual Journey" },
-  reviews: { id: "reviews", name: "Press & Critic Reviews", visible: true, title: "Critical Acclaim" },
-  contact: { id: "contact", name: "Private Dining & Bookings", visible: true, title: "Private Dining" }
+  hero:       { id: "hero",       name: "Hero Banner",          visible: true,  title: "Welcome" },
+  bio:        { id: "bio",        name: "About the Chef",       visible: true,  title: "About Me" },
+  dishes:     { id: "dishes",     name: "Menu & Dishes",        visible: true,  title: "Our Menu" },
+  experience: { id: "experience", name: "Awards & Experience",  visible: true,  title: "Awards" },
+  gallery:    { id: "gallery",    name: "Photos",               visible: true,  title: "Photos" },
+  reviews:    { id: "reviews",    name: "Reviews",              visible: true,  title: "Reviews" },
+  contact:    { id: "contact",    name: "Book a Table",         visible: true,  title: "Book a Table" }
 };
 
 export const initialDishes = [
   {
     id: "dish-1",
-    name: "A5 Wagyu Beef Tenderloin in Smoked Truffle Jus",
+    name: "A5 Wagyu Beef with Black Truffle Sauce",
     category: "Main Course",
     price: "$145",
     prepTime: "25 min",
     image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=80",
-    badge: "3-Star Michelin Signature",
-    shortDescription: "Miyazaki A5 Wagyu paired with charred baby leeks, bone marrow emulsion, and a 48-hour black truffle reduction.",
-    fullDescription: "Seared over Japanese Binchotan charcoal, this signature creation features Miyazaki A5 Wagyu known for its immaculate marbling. Served alongside slow-braised baby leeks, crispy sunchoke chips, and drizzled with a velvety black truffle and bone marrow reduction perfected over 48 hours.",
+    badge: "Chef's Best",
+    shortDescription: "Top-grade Japanese Wagyu beef served with baby leeks, bone broth, and a rich black truffle sauce cooked for 48 hours.",
+    fullDescription: "This is our most popular dish. The Wagyu beef is grilled over charcoal and served with slow-cooked baby leeks, crispy sunchoke chips, and a deep black truffle sauce. The beef is very tender and full of flavor.",
     dietary: ["Gluten-Free", "High Protein"],
     ingredients: [
-      "Miyazaki A5 Wagyu Tenderloin",
-      "Perigord Black Truffle",
-      "Bone Marrow Broth",
-      "Organic Baby Leeks",
-      "Sunchoke Purée",
-      "Fleur de Sel de Guérande"
+      "A5 Wagyu Beef",
+      "Black Truffle",
+      "Bone Broth",
+      "Baby Leeks",
+      "Sunchoke",
+      "Sea Salt"
     ],
-    pairing: "2015 Château Margaux, Premier Grand Cru Classé",
-    chefNote: "We sear the wagyu at precisely 320°C for 45 seconds per side to caramelize the outer crust while keeping the interior silky and succulent.",
-    flavorProfile: {
-      umami: 98,
-      richness: 95,
-      acidity: 40,
-      sweetness: 25,
-      texture: 92
-    }
+    pairing: "2015 Château Margaux Red Wine",
+    chefNote: "We cook the beef at very high heat for a short time to get a nice crust on the outside while keeping it soft inside.",
+    flavorProfile: { umami: 98, richness: 95, acidity: 40, sweetness: 25, texture: 92 }
   },
   {
     id: "dish-2",
-    name: "Pan-Seared Brittany Sea Bass & Saffron Foam",
+    name: "Crispy Sea Bass with Saffron Foam",
     category: "Main Course",
     price: "$110",
     prepTime: "20 min",
     image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=1000&q=80",
     badge: "Chef's Favorite",
-    shortDescription: "Crispy skin sea bass resting on wild samphire, fennel confit, and golden Kashmiri saffron velvet foam.",
-    fullDescription: "Wild-caught Brittany sea bass cooked skin-side down until shatteringly crisp. Accompanied by butter-poached sweet fennel, sea asparagus, and an airy saffron reduction infused with kaffir lime zest.",
+    shortDescription: "Fresh sea bass with crispy skin, cooked fennel, sea herbs, and a light saffron foam.",
+    fullDescription: "Fresh wild sea bass cooked skin-side down until the skin is perfectly crispy. Served with cooked sweet fennel, sea herbs, and a light golden saffron foam with a touch of lime.",
     dietary: ["Gluten-Free", "Pescatarian"],
     ingredients: [
-      "Wild Brittany Sea Bass",
-      "Kashmiri Saffron Strand",
-      "Fennel Bulb Confit",
-      "Fresh Samphire",
-      "White Port Reduction",
-      "Kaffir Lime Zest"
+      "Wild Sea Bass",
+      "Saffron",
+      "Fennel",
+      "Sea Herbs",
+      "White Wine Reduction",
+      "Lime Zest"
     ],
-    pairing: "2018 Meursault Premier Cru, Domaine Coche-Dury",
-    chefNote: "Saffron requires extreme temperature care. We bloom the threads at 65°C to extract vibrant gold hues and deep earthy aromatics without bitterness.",
-    flavorProfile: {
-      umami: 75,
-      richness: 65,
-      acidity: 70,
-      sweetness: 30,
-      texture: 85
-    }
+    pairing: "2018 White Burgundy",
+    chefNote: "Saffron needs to be cooked at the right temperature to release its full flavor and color without turning bitter.",
+    flavorProfile: { umami: 75, richness: 65, acidity: 70, sweetness: 30, texture: 85 }
   },
   {
     id: "dish-3",
-    name: "Smoked Burrata with Heirloom Caviar Pearls",
-    category: "Appetizers",
+    name: "Smoked Burrata with Caviar",
+    category: "Starters",
     price: "$78",
     prepTime: "15 min",
     image: "https://images.unsplash.com/photo-1592417817098-8f3d6928e1d2?auto=format&fit=crop&w=1000&q=80",
-    badge: "Seasonal Starter",
-    shortDescription: "Handcrafted Puglia burrata lightly cold-smoked over Applewood, topped with Osetra caviar and micro basil.",
-    fullDescription: "Fresh artisanal cream-filled burrata, cold-smoked over sweet applewood chips. Served with aged balsamic reduction from Modena (25-year), compressed heirloom tomatoes, and topped generously with Royal Osetra Caviar.",
+    badge: "Seasonal",
+    shortDescription: "Fresh burrata cheese lightly smoked over wood, topped with caviar and fresh basil leaves.",
+    fullDescription: "Soft, fresh burrata cheese gently cold-smoked over applewood. Served with aged balsamic, ripe tomatoes, and a generous serving of Osetra caviar on top.",
     dietary: ["Vegetarian Option", "Gluten-Free"],
     ingredients: [
-      "Pugliese Cream Burrata",
-      "Royal Osetra Caviar",
-      "25-Year Modena Balsamic",
-      "Compressed Heirloom Tomato",
-      "Extra Virgin Olive Oil",
-      "Micro Purple Basil"
+      "Fresh Burrata",
+      "Osetra Caviar",
+      "Aged Balsamic",
+      "Ripe Tomato",
+      "Olive Oil",
+      "Fresh Basil"
     ],
-    pairing: "Krug Grande Cuvée 170th Edition Champagne",
-    chefNote: "The cold smoke adds a subtle hint of fireplace warmth that perfectly cuts through the rich cream of the burrata.",
-    flavorProfile: {
-      umami: 82,
-      richness: 90,
-      acidity: 65,
-      sweetness: 45,
-      texture: 88
-    }
+    pairing: "Champagne",
+    chefNote: "The light smoke adds a warm, gentle flavor that works well with the rich, creamy burrata.",
+    flavorProfile: { umami: 82, richness: 90, acidity: 65, sweetness: 45, texture: 88 }
   },
   {
     id: "dish-4",
-    name: "Golden Chocolate Sphere with Raspberry Coulis",
-    category: "Fine Desserts",
+    name: "Gold Chocolate Sphere with Raspberry Sauce",
+    category: "Desserts",
     price: "$55",
     prepTime: "18 min",
     image: "https://images.unsplash.com/photo-1579372786545-d24232daf58c?auto=format&fit=crop&w=1000&q=80",
-    badge: "Showstopper Dessert",
-    shortDescription: "24K edible gold leaf dark Valrhona sphere melted open with hot wild raspberry coulis at tableside.",
-    fullDescription: "An interactive dessert experience. A hand-blown 70% Valrhona dark chocolate shell dusted with 24-karat gold leaf, encapsulating hazelnut praline mousse and passionfruit gel. Melted live at your table with boiling wild raspberry and cardamom elixir.",
+    badge: "Table Side Show",
+    shortDescription: "Dark chocolate sphere covered in gold leaf, filled with hazelnut cream. Opened at your table with hot raspberry sauce.",
+    fullDescription: "A fun and beautiful dessert. A dark chocolate ball covered in edible gold is brought to your table. Hot raspberry sauce is poured over it, melting the shell to reveal hazelnut cream and passion fruit inside.",
     dietary: ["Vegetarian"],
     ingredients: [
-      "70% Valrhona Guanaja Chocolate",
-      "24K Edible Gold Leaf",
-      "Piedmont Hazelnut Praline",
-      "Wild Raspberry Coulis",
-      "Passionfruit Gel",
-      "Tahitian Vanilla Bean"
+      "Dark Chocolate",
+      "Edible Gold",
+      "Hazelnut Cream",
+      "Raspberry Sauce",
+      "Passion Fruit",
+      "Vanilla"
     ],
-    pairing: "2010 Chateau d'Yquem Sauternes",
-    chefNote: "Balance is key in dessert. The intense dark chocolate and warm raspberry heat contrast magnificently with the frozen passionfruit center.",
-    flavorProfile: {
-      umami: 20,
-      richness: 88,
-      acidity: 80,
-      sweetness: 85,
-      texture: 95
-    }
+    pairing: "Sauternes Sweet Wine",
+    chefNote: "The contrast between the warm chocolate outside and the cold passion fruit inside is what makes this dessert special.",
+    flavorProfile: { umami: 20, richness: 88, acidity: 80, sweetness: 85, texture: 95 }
   },
   {
     id: "dish-5",
-    name: "Hokkaido Scallop Crudo with Yuzu Granita",
-    category: "Appetizers",
+    name: "Raw Scallop with Yuzu Ice",
+    category: "Starters",
     price: "$68",
     prepTime: "12 min",
     image: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=1000&q=80",
-    badge: "Raw Bar Specialty",
-    shortDescription: "Thinly sliced wild Hokkaido sea scallops with frozen yuzu mint granita and finger lime pearls.",
-    fullDescription: "Sourced directly from cold Hokkaido waters, raw scallops are sliced paper-thin and dressed with Japanese shiso oil, pink sea salt flakes, flash-frozen yuzu mint granita, and burst-in-the-mouth finger lime pearls.",
+    badge: "Raw Bar Special",
+    shortDescription: "Fresh raw Hokkaido scallop slices with frozen yuzu and mint ice and small citrus pearls.",
+    fullDescription: "Very fresh scallops from Hokkaido, Japan, sliced thin and dressed with shiso herb oil, sea salt, frozen yuzu-mint ice, and small citrus pearls that burst in your mouth.",
     dietary: ["Gluten-Free", "Raw", "Dairy-Free"],
     ingredients: [
-      "Hokkaido Sea Scallop",
+      "Hokkaido Scallop",
       "Yuzu Juice",
-      "Shiso Leaf Oil",
-      "Australian Finger Lime",
-      "Pink Himalayan Salt",
-      "Micro Edible Flowers"
+      "Shiso Herb",
+      "Finger Lime",
+      "Sea Salt",
+      "Edible Flowers"
     ],
-    pairing: "2021 Sancerre 'La Grande Côte', Pascal Cotat",
-    chefNote: "Raw scallops demand absolute freshness. We shave the granita right before serving to create a temperature shock on the palate.",
-    flavorProfile: {
-      umami: 65,
-      richness: 35,
-      acidity: 92,
-      sweetness: 30,
-      texture: 80
-    }
+    pairing: "Sancerre White Wine",
+    chefNote: "The scallops must be very fresh. We shave the frozen yuzu ice right before serving so it stays cold on the plate.",
+    flavorProfile: { umami: 65, richness: 35, acidity: 92, sweetness: 30, texture: 80 }
   },
   {
     id: "dish-6",
-    name: "Smoked Hibiscus Botanical Elixir",
-    category: "Signature Pairings",
+    name: "Hibiscus & Mezcal Smoked Drink",
+    category: "Signature Drinks",
     price: "$42",
     prepTime: "10 min",
     image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1000&q=80",
-    badge: "Avant-Garde Mixology",
-    shortDescription: "Wild hibiscus, smoked mezcal, elderflower liqueur, and gold dust served under a rosemary smoke cloche.",
-    fullDescription: "A sensory cocktail pairing crafted to accompany smoked seafood and savory starters. Features organic Mexican hibiscus infusion, artisanal reposado mezcal, St-Germain elderflower, and vaporized flamed rosemary smoke.",
+    badge: "House Special",
+    shortDescription: "Hibiscus, mezcal, and elderflower drink served under a glass dome filled with rosemary smoke.",
+    fullDescription: "A special cocktail made with hibiscus tea, mezcal, elderflower, and a touch of gold shimmer. It comes to your table under a glass dome filled with rosemary smoke, which is lifted just before you drink.",
     dietary: ["Vegan", "Gluten-Free"],
     ingredients: [
-      "Wild Mexican Hibiscus",
-      "Artisanal Reposado Mezcal",
-      "St-Germain Elderflower Liqueur",
+      "Hibiscus Tea",
+      "Mezcal",
+      "Elderflower Liqueur",
       "Fresh Rosemary Smoke",
-      "Edible Gold Shimmer",
-      "Clarified Lime"
+      "Edible Gold",
+      "Lime Juice"
     ],
-    pairing: "Pairs with Smoked Burrata or Hokkaido Scallop",
-    chefNote: "The cloche is lifted at your table to release aromatic rosemary notes into your immediate environment before your first sip.",
-    flavorProfile: {
-      umami: 30,
-      richness: 40,
-      acidity: 85,
-      sweetness: 60,
-      texture: 70
-    }
+    pairing: "Goes well with Smoked Burrata or Raw Scallop",
+    chefNote: "Lifting the smoke dome at the table is part of the experience — the rosemary smell prepares your senses before the first sip.",
+    flavorProfile: { umami: 30, richness: 40, acidity: 85, sweetness: 60, texture: 70 }
   }
 ];
 
@@ -209,9 +173,9 @@ export const initialExperience = [
   {
     id: "exp-1",
     year: "2021 - Present",
-    role: "Chef Patron & Owner",
+    role: "Head Chef & Owner",
     establishment: "L'Étoile D'Or — Paris",
-    description: "Awarded 3 Michelin Stars within 3 years of opening. Renowned for innovative 12-course tasting journeys.",
+    description: "Opened and runs his own restaurant in Paris. Earned 3 Michelin Stars within 3 years, known for his creative 12-course tasting menus.",
     badge: "3 Michelin Stars"
   },
   {
@@ -219,54 +183,54 @@ export const initialExperience = [
     year: "2016 - 2020",
     role: "Executive Head Chef",
     establishment: "Le Grand Restaurant — Tokyo",
-    description: "Helmed the culinary direction blending French classical sauces with rare Japanese seasonal fish.",
+    description: "Led the kitchen team and menu in Tokyo, combining French cooking with fresh Japanese ingredients.",
     badge: "World's 50 Best #8"
   },
   {
     id: "exp-3",
     year: "2011 - 2015",
-    role: "Chef de Cuisine",
+    role: "Senior Chef",
     establishment: "Restaurant Guy Savoy — Paris",
-    description: "Mastered high-end French haute cuisine under legendary mentors.",
-    badge: "Master Artisan"
+    description: "Trained in classic French fine dining under one of the most respected chefs in the world.",
+    badge: "Master Chef"
   }
 ];
 
 export const initialGallery = [
   {
     id: "gal-1",
-    title: "Table Side Presentation",
+    title: "Table Presentation",
     category: "Plated Art",
     image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1000&q=80"
   },
   {
     id: "gal-2",
-    title: "Main Kitchen Fire Station",
-    category: "Kitchen Action",
+    title: "Kitchen in Action",
+    category: "Kitchen",
     image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1000&q=80"
   },
   {
     id: "gal-3",
-    title: "Intimate Dining Room",
-    category: "Atmosphere",
+    title: "Our Dining Room",
+    category: "Restaurant",
     image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80"
   },
   {
     id: "gal-4",
-    title: "Precision Plating",
+    title: "Careful Plating",
     category: "Plated Art",
     image: "https://images.unsplash.com/photo-1578474846511-04ba529f0b88?auto=format&fit=crop&w=1000&q=80"
   },
   {
     id: "gal-5",
-    title: "Wine Cellar Reserve",
-    category: "Atmosphere",
+    title: "Wine Collection",
+    category: "Restaurant",
     image: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1000&q=80"
   },
   {
     id: "gal-6",
-    title: "Sous Vide Preparation",
-    category: "Kitchen Action",
+    title: "Food Preparation",
+    category: "Kitchen",
     image: "https://images.unsplash.com/photo-1507048331197-7d4ac70811cf?auto=format&fit=crop&w=1000&q=80"
   }
 ];
@@ -277,7 +241,7 @@ export const initialReviews = [
     critic: "Michelin Guide Inspectors",
     publication: "Michelin Guide 2024",
     avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
-    quote: "Chef Antoine Laurent achieves pure perfection. Every dish is a symphony where texture, temperature, and taste dance in total harmony.",
+    quote: "Chef Antoine Laurent is close to perfect. Every dish is balanced, creative, and beautifully made. One of the best dining experiences in Europe.",
     rating: 5
   },
   {
@@ -285,15 +249,15 @@ export const initialReviews = [
     critic: "Pete Wells",
     publication: "The New York Times",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
-    quote: "The A5 Wagyu Tenderloin with 48-hour black truffle jus is quite simply the single greatest dish I have tasted in a decade of food reporting.",
+    quote: "The Wagyu Beef with truffle sauce is simply the best dish I have eaten in ten years of writing about food. Rich, deep, and unforgettable.",
     rating: 5
   },
   {
     id: "rev-3",
     critic: "Gault & Millau",
-    publication: "International Gastronomy Review",
+    publication: "International Food Review",
     avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80",
-    quote: "Avant-garde precision meets timeless emotion. Laurent's commitment to ingredient purity elevates dining into unforgettable living art.",
+    quote: "Chef Laurent takes great ingredients and treats them with real care. The result is food that is both beautiful to look at and wonderful to eat.",
     rating: 5
   }
 ];
@@ -301,13 +265,13 @@ export const initialReviews = [
 export const initialReservations = [
   {
     id: "res-101",
-    name: "Lord Jonathan Vance",
+    name: "Jonathan Vance",
     email: "j.vance@luxuryholding.com",
     phone: "+44 20 7946 0912",
     date: "2026-09-15",
     guests: 6,
-    eventType: "Private VIP Tasting Dinner",
-    specialRequests: "Pairings must include Burgundy Pinot Noir. No shellfish for 2 guests.",
+    eventType: "Private Dinner",
+    specialRequests: "Red Burgundy wine only. Two guests cannot eat shellfish.",
     status: "Confirmed",
     createdAt: "2026-08-19"
   },
@@ -318,7 +282,7 @@ export const initialReservations = [
     phone: "+1 415 555 0199",
     date: "2026-09-22",
     guests: 2,
-    eventType: "Anniversary Masterclass & Meal",
+    eventType: "Anniversary Dinner",
     specialRequests: "Would love a signed menu from Chef Antoine.",
     status: "Pending",
     createdAt: "2026-08-20"

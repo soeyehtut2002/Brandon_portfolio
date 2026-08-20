@@ -8,47 +8,40 @@ export default function ChefBio() {
   if (!sections.bio?.visible) return null;
 
   return (
-    <section id="bio" className="py-24 relative bg-obsidian-900/60 border-y border-obsidian-800/80">
+    <section id="bio" className="py-24 relative bg-theme-secondary border-y border-theme">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 text-gold-400 text-xs font-semibold uppercase tracking-widest mb-2">
+          <div className="inline-flex items-center gap-2 text-orange-500 text-xs font-semibold uppercase tracking-widest mb-2">
             <Sparkles className="w-4 h-4" />
-            <span>{sections.bio.title || "The Culinary Journey"}</span>
+            <span>{sections.bio.title || "About the Chef"}</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-serif font-bold text-stone-100">
-            Artistry & Gastronomy
+          <h2 className="text-3xl sm:text-5xl font-serif font-bold text-theme-primary">
+            Meet the Chef
           </h2>
-          <div className="w-16 h-[2px] bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto mt-4" />
+          <div className="divider-orange" />
         </div>
 
         {/* Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Portrait Column */}
           <div className="lg:col-span-5 relative">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
-              {/* Outer decorative ring */}
-              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-tr from-gold-500/20 via-transparent to-gold-400/10 blur-xl opacity-70" />
-
-              <div className="relative rounded-2xl overflow-hidden border border-gold-500/30 shadow-2xl group">
+            <div className="relative mx-auto max-w-sm sm:max-w-md lg:max-w-none">
+              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-tr from-orange-300/30 via-transparent to-orange-200/20 blur-xl opacity-70" />
+              <div className="relative rounded-2xl overflow-hidden border border-theme shadow-2xl group">
                 <img
                   src={chefProfile.bioPortrait}
                   alt={chefProfile.name}
-                  className="w-full h-[520px] object-cover object-center group-hover:scale-105 transition-transform duration-700 filter brightness-95"
+                  className="w-full h-[420px] sm:h-[520px] object-cover object-center group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-transparent to-transparent opacity-80" />
-
-                {/* Bottom Floating Badge */}
-                <div className="absolute bottom-6 left-6 right-6 glass-panel p-4 rounded-xl border border-obsidian-700/80 flex items-center justify-between">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80" />
+                {/* Bottom Badge */}
+                <div className="absolute bottom-4 left-4 right-4 bg-theme-card/90 backdrop-blur-md p-3 sm:p-4 rounded-xl border border-theme shadow-lg flex items-center justify-between">
                   <div>
-                    <p className="text-xs uppercase tracking-wider text-gold-400 font-semibold">
-                      Flagship Establishment
-                    </p>
-                    <p className="text-sm text-stone-200 font-serif font-semibold">
-                      {chefProfile.socials.restaurant}
-                    </p>
+                    <p className="text-xs uppercase tracking-wider text-orange-500 font-semibold">Our Restaurant</p>
+                    <p className="text-sm text-theme-primary font-serif font-semibold">{chefProfile.socials.restaurant}</p>
                   </div>
-                  <div className="p-2 rounded-lg bg-gold-500/20 text-gold-400">
+                  <div className="p-2 rounded-lg bg-theme-muted text-orange-500">
                     <MapPin className="w-5 h-5" />
                   </div>
                 </div>
@@ -57,49 +50,42 @@ export default function ChefBio() {
           </div>
 
           {/* Text Column */}
-          <div className="lg:col-span-7 flex flex-col justify-center space-y-6">
-            <h3 className="text-2xl sm:text-3xl font-serif text-stone-100 font-semibold leading-snug">
-              "Cooking is an intimate conversation between nature's harvest and human emotion."
+          <div className="lg:col-span-7 flex flex-col justify-center space-y-5">
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-serif text-theme-primary font-semibold leading-snug">
+              "Good food is made with care, skill, and the best ingredients."
             </h3>
-
-            <p className="text-stone-300 font-light leading-relaxed text-base">
-              Trained under legendary French culinary masters and seasoned across the vibrant markets of Tokyo, Osaka, and Copenhagen, Chef {chefProfile.name} brings an avant-garde approach to fine dining.
+            <p className="text-theme-secondary font-light leading-relaxed text-sm sm:text-base">
+              Chef {chefProfile.name} trained in France and worked in top kitchens across Tokyo, Osaka, and Copenhagen. He brings a creative and modern style to every dish.
             </p>
-
-            <p className="text-stone-400 font-light leading-relaxed text-sm">
-              Each dish is designed as a multisensory masterpiece—combining pristine seasonal ingredients, precise thermal technique, and artistic plating that honours the natural purity of every element.
+            <p className="text-theme-muted font-light leading-relaxed text-sm">
+              Every dish uses fresh, seasonal ingredients and is cooked with care and skill. The result is food that is beautiful to look at and wonderful to taste.
             </p>
 
             {/* Philosophy Card */}
-            <div className="glass-panel p-6 rounded-2xl border-l-4 border-l-gold-500 relative mt-4">
-              <Quote className="w-8 h-8 text-gold-500/20 absolute top-4 right-4" />
-              <p className="text-xs uppercase tracking-widest text-gold-400 font-bold mb-2">
-                Chef's Philosophy
-              </p>
-              <p className="text-sm italic text-stone-300 leading-relaxed font-serif">
-                "{chefProfile.philosophy}"
-              </p>
+            <div className="bg-theme-muted border border-theme p-5 sm:p-6 rounded-2xl border-l-4 border-l-orange-500 relative mt-2">
+              <Quote className="w-7 h-7 text-orange-200 absolute top-4 right-4" />
+              <p className="text-xs uppercase tracking-widest text-orange-500 font-bold mb-2">Chef's Belief</p>
+              <p className="text-sm italic text-theme-secondary leading-relaxed font-serif">"{chefProfile.philosophy}"</p>
             </div>
 
-            {/* Signature Metrics List */}
-            <div className="grid grid-cols-2 gap-4 pt-4">
-              <div className="flex items-center gap-3 glass-panel p-3 rounded-xl">
-                <div className="p-2 bg-gold-500/10 text-gold-400 rounded-lg">
+            {/* Metrics */}
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 pt-2">
+              <div className="flex items-center gap-3 glass-card p-3 rounded-xl">
+                <div className="p-2 bg-theme-muted text-orange-500 rounded-lg shrink-0">
                   <Award className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xs text-stone-400 uppercase tracking-wider">Accolades</div>
-                  <div className="text-sm font-semibold text-stone-200">3 Michelin Stars</div>
+                  <div className="text-xs text-orange-400 uppercase tracking-wider">Awards</div>
+                  <div className="text-sm font-semibold text-theme-primary">3 Michelin Stars</div>
                 </div>
               </div>
-
-              <div className="flex items-center gap-3 glass-panel p-3 rounded-xl">
-                <div className="p-2 bg-gold-500/10 text-gold-400 rounded-lg">
+              <div className="flex items-center gap-3 glass-card p-3 rounded-xl">
+                <div className="p-2 bg-theme-muted text-orange-500 rounded-lg shrink-0">
                   <Sparkles className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xs text-stone-400 uppercase tracking-wider">Style</div>
-                  <div className="text-sm font-semibold text-stone-200">Modern Avant-Garde</div>
+                  <div className="text-xs text-orange-400 uppercase tracking-wider">Style</div>
+                  <div className="text-sm font-semibold text-theme-primary">Modern Fine Dining</div>
                 </div>
               </div>
             </div>
