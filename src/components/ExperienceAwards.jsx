@@ -126,7 +126,7 @@ export default function ExperienceAwards() {
         <div className="grid grid-cols-3 gap-3 sm:gap-6 max-w-2xl mx-auto mb-12 sm:mb-16">
           {[
             { value: experience.length, label: 'Milestones' },
-            { value: '3★',             label: 'Michelin Stars' },
+            { value: '15+',            label: 'Global Awards' },
             { value: '20+',            label: 'Years Cooking' },
           ].map(({ value, label }) => (
             <div key={label} className="glass-card border border-theme rounded-xl sm:rounded-2xl p-4 text-center hover:border-orange-300 transition-all">

@@ -179,8 +179,8 @@ export const initialExperience = [
     year: "2021 - Present",
     role: "Head Chef & Owner",
     establishment: "L'Étoile D'Or — Paris",
-    description: "Opened and runs his own restaurant in Paris. Earned 3 Michelin Stars within 3 years, known for his creative 12-course tasting menus.",
-    badge: "3 Michelin Stars"
+    description: "Opened and runs his own restaurant in Paris. Recognized globally for his creative 12-course tasting menus.",
+    badge: "Top Dining Award"
   },
   {
     id: "exp-2",

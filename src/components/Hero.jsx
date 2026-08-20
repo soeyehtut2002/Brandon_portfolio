@@ -34,15 +34,13 @@ export default function Hero() {
 
       {/* Main Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center">
-        {/* Michelin Star Badge */}
+        {/* Award Badge */}
         <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full mb-6 bg-white/15 border border-white/30 backdrop-blur-md shadow-lg">
           <div className="flex text-orange-300 gap-1">
-            {[...Array(chefProfile.michelinStars)].map((_, i) => (
-              <Star key={i} className="w-4 h-4 fill-orange-300 text-orange-300" />
-            ))}
+            <Award className="w-4 h-4 text-orange-300" />
           </div>
           <span className="text-xs uppercase tracking-widest text-orange-100 font-semibold">
-            {chefProfile.michelinStars}-Star Michelin Honoree
+            Award-Winning Executive Chef
           </span>
         </div>
 
@@ -99,10 +97,10 @@ export default function Hero() {
 
           <div className="flex flex-col items-center border-x border-white/20 px-4">
             <span className="text-3xl sm:text-4xl font-serif font-bold text-orange-200">
-              {chefProfile.michelinStars} Stars
+              Fine
             </span>
             <span className="text-xs uppercase tracking-widest text-white/70 mt-1">
-              Michelin Guide
+              Dining Cuisine
             </span>
           </div>
 

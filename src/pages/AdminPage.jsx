@@ -496,8 +496,7 @@ export default function AdminPage() {
                   <div><label className={lbl}>Hero Tagline</label><input value={profileForm.tagline||''} onChange={e => setProfileForm(p=>({...p,tagline:e.target.value}))} className={inp} /></div>
                   <div><label className={lbl}>Hero Subtitle</label><input value={profileForm.subtitle||''} onChange={e => setProfileForm(p=>({...p,subtitle:e.target.value}))} className={inp} /></div>
                   <div><label className={lbl}>Philosophy / Belief</label><textarea rows={3} value={profileForm.philosophy||''} onChange={e => setProfileForm(p=>({...p,philosophy:e.target.value}))} className={ta} /></div>
-                  <div className="grid grid-cols-3 gap-4">
-                    <div><label className={lbl}>Michelin Stars</label><input type="number" min={1} max={3} value={profileForm.michelinStars||3} onChange={e => setProfileForm(p=>({...p,michelinStars:Number(e.target.value)}))} className={inp} /></div>
+                  <div className="grid grid-cols-2 gap-4">
                     <div><label className={lbl}>Years Exp.</label><input type="number" value={profileForm.yearsExperience||18} onChange={e => setProfileForm(p=>({...p,yearsExperience:Number(e.target.value)}))} className={inp} /></div>
                     <div><label className={lbl}>Dishes Count</label><input type="number" value={profileForm.signatureDishesCount||42} onChange={e => setProfileForm(p=>({...p,signatureDishesCount:Number(e.target.value)}))} className={inp} /></div>
                   </div>

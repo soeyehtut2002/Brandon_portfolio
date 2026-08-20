@@ -90,7 +90,7 @@ ACHIEVEMENTS
                 Chef {chefProfile.name.split(' ')[0]}
               </span>
               <span className="text-[9px] tracking-widest text-orange-400 uppercase hidden sm:block">
-                {chefProfile.michelinStars} Michelin Stars
+                {chefProfile.title || 'Executive Chef'}
               </span>
             </div>
           </a>

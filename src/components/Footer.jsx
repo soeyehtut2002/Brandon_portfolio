@@ -49,7 +49,7 @@ ACHIEVEMENTS
             </div>
             <div>
               <h3 className="font-serif font-bold text-white text-lg">Chef {chefProfile.name}</h3>
-              <p className="text-xs text-orange-400">{chefProfile.michelinStars}-Star Michelin Gastronomy</p>
+              <p className="text-xs text-orange-400">Fine Dining & Culinary Art</p>
             </div>
           </div>
 

@@ -75,8 +75,8 @@ export default function ChefBio() {
                   <Award className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xs text-orange-400 uppercase tracking-wider">Awards</div>
-                  <div className="text-sm font-semibold text-theme-primary">{chefProfile.michelinStars} Michelin Stars</div>
+                  <div className="text-xs text-orange-400 uppercase tracking-wider">Experience</div>
+                  <div className="text-sm font-semibold text-theme-primary">{chefProfile.yearsExperience}+ Years Excellence</div>
                 </div>
               </div>
               <div className="flex items-center gap-3 glass-card p-3 rounded-xl">
