@@ -327,7 +327,22 @@ export default function AdminPage() {
           </div>
         </header>
 
-        <div className="flex flex-grow overflow-hidden">
+        {/* ── Mobile Tab Bar ── */}
+        <div className="md:hidden w-full bg-theme-secondary border-b border-theme px-2 py-1.5 flex gap-1 overflow-x-auto shrink-0 sticky top-[57px] z-20">
+          {TABS.map(tab => {
+            const Icon = tab.icon;
+            const active = activeTab === tab.id;
+            return (
+              <button key={tab.id} onClick={() => setActiveTab(tab.id)}
+                className={`flex flex-col items-center gap-0.5 px-3 py-2 rounded-xl text-[10px] font-semibold uppercase whitespace-nowrap shrink-0 transition-all ${active ? 'bg-orange-500 text-white' : 'text-theme-muted hover:text-orange-500'}`}>
+                <Icon className="w-4 h-4" />
+                {tab.label}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="flex flex-grow min-h-0">
           {/* ── Sidebar ── */}
           <aside className="w-56 lg:w-64 bg-theme-secondary border-r border-theme p-3 flex flex-col gap-1 overflow-y-auto shrink-0 hidden md:flex">
             {TABS.map(tab => {
@@ -346,24 +361,9 @@ export default function AdminPage() {
             })}
           </aside>
 
-          {/* ── Mobile Tab Bar ── */}
-          <div className="md:hidden w-full bg-theme-secondary border-b border-theme px-2 py-1.5 flex gap-1 overflow-x-auto shrink-0 sticky top-[57px] z-20" style={{ position: 'fixed', top: 57, left: 0, right: 0 }}>
-            {TABS.map(tab => {
-              const Icon = tab.icon;
-              const active = activeTab === tab.id;
-              return (
-                <button key={tab.id} onClick={() => setActiveTab(tab.id)}
-                  className={`flex flex-col items-center gap-0.5 px-3 py-2 rounded-xl text-[10px] font-semibold uppercase whitespace-nowrap shrink-0 transition-all ${active ? 'bg-orange-500 text-white' : 'text-theme-muted hover:text-orange-500'}`}>
-                  <Icon className="w-4 h-4" />
-                  {tab.label}
-                </button>
-              );
-            })}
-          </div>
-
           {/* ── Main Content ── */}
-          <main className="flex-grow p-4 sm:p-6 overflow-y-auto bg-theme-primary mt-0 md:mt-0" style={{ paddingTop: undefined }}>
-            <div className="md:hidden h-14" /> {/* spacer for mobile fixed tab bar */}
+          <main className="flex-grow p-4 sm:p-6 overflow-y-auto bg-theme-primary">
+
 
             {/* ══ OVERVIEW ══ */}
             {activeTab === 'overview' && (
