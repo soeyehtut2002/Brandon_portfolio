@@ -1,5 +1,5 @@
 export const initialChefProfile = {
-  name: "Brandon Lee",
+  name: "Brandon",
   title: "Culinary Graduate & Aspiring Chef",
   yearsExperience: 2,
   signatureDishesCount: 15,

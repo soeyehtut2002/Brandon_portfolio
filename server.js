@@ -37,7 +37,7 @@ if (process.env.DATABASE_URL) {
    Initial Master Dataset (Fallback & DB Seeding)
    ────────────────────────────────────────────────────────── */
 const defaultProfile = {
-  name: "Brandon Lee",
+  name: "Brandon",
   title: "Culinary Graduate & Aspiring Chef",
   yearsExperience: 2,
   signatureDishesCount: 15,
