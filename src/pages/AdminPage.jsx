@@ -277,12 +277,13 @@ export default function AdminPage() {
               </button>
             </form>
 
-            <div className="pt-4 border-t border-theme flex items-center justify-between text-xs">
-              <span className="text-theme-muted text-[11px]">Passcode: <code className="text-orange-500 font-bold px-1.5 py-0.5 rounded bg-theme-muted border border-theme">{passcode}</code></span>
+
+            <div className="pt-4 border-t border-theme flex items-center justify-end text-xs">
               <Link to="/" className="text-orange-500 hover:underline flex items-center gap-1 font-semibold">
                 <ArrowLeft className="w-3.5 h-3.5" /> Back to Site
               </Link>
             </div>
+
           </div>
         </div>
         <Toast />
