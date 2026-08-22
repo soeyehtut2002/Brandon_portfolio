@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { usePortfolio } from '../context/PortfolioContext';
-import { UtensilsCrossed, Settings, Sun, Moon, Download } from 'lucide-react';
+import { UtensilsCrossed, Settings, Download } from 'lucide-react';
 
 export default function Footer() {
-  const { chefProfile, darkMode, toggleDarkMode } = usePortfolio();
+  const { chefProfile } = usePortfolio();
 
   const handleCVDownload = () => {
     const cvContent = `
@@ -76,13 +76,6 @@ ACHIEVEMENTS
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-orange-500/10 text-orange-400 border border-orange-500/30 hover:bg-orange-500 hover:text-white hover:border-orange-500 transition-all text-[11px] font-semibold">
                 <Download className="w-3.5 h-3.5" />
                 <span>CV</span>
-              </button>
-
-              {/* Dark Mode Toggle */}
-              <button onClick={toggleDarkMode}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 text-white/50 border border-white/10 hover:border-orange-500/50 hover:text-orange-400 transition-all text-[11px]">
-                {darkMode ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
-                <span>{darkMode ? 'Light' : 'Dark'}</span>
               </button>
 
               {/* Admin */}

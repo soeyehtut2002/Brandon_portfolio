@@ -52,10 +52,10 @@ export const PortfolioProvider = ({ children }) => {
   const [selectedDishModal, setSelectedDishModal] = useState(null);
   const [toastMessage, setToastMessage] = useState(null);
 
-  // Dark Mode
+  // Dark Mode (Defaults to true / dark mode)
   const [darkMode, setDarkMode] = useState(() => {
     const saved = localStorage.getItem('chef_portfolio_darkmode');
-    return saved ? JSON.parse(saved) : false;
+    return saved !== null ? JSON.parse(saved) : true;
   });
 
   useEffect(() => {
