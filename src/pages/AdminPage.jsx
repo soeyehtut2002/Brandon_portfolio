@@ -621,8 +621,95 @@ export default function AdminPage() {
                     <div key={k}><label className={lbl}>{l}</label><input value={profileForm.socials?.[k]||''} onChange={e => setProfileForm(p=>({...p,socials:{...p.socials,[k]:e.target.value}}))} className={inp} /></div>
                   ))}
                 </div>
+                <div className={`${card} p-5 space-y-4`}>
+                  <h3 className="text-sm font-semibold text-theme-primary uppercase tracking-wider flex items-center gap-2">
+                    <Download className="w-4 h-4 text-orange-500" /> CV / Resume File
+                  </h3>
+                  <p className="text-xs text-theme-muted">Upload your CV/Resume PDF or paste a link. This will be used when visitors click "Download CV".</p>
+
+                  {/* Mode toggle */}
+                  {(() => {
+                    const cvMode = profileForm._cvMode || 'url';
+                    return (
+                      <div className="space-y-3">
+                        <div className="flex items-center bg-theme-muted rounded-lg p-0.5 border border-theme w-fit">
+                          {[['url','🔗 URL Link'],['file','📄 Upload PDF']].map(([m, lbl2]) => (
+                            <button key={m} type="button"
+                              onClick={() => setProfileForm(p => ({ ...p, _cvMode: m }))}
+                              className={`px-3 py-1.5 rounded-md text-[11px] font-semibold uppercase tracking-wide transition-all ${cvMode === m ? 'bg-orange-500 text-white shadow-sm' : 'text-theme-muted hover:text-orange-500'}`}>
+                              {lbl2}
+                            </button>
+                          ))}
+                        </div>
+
+                        {cvMode === 'url' ? (
+                          <div>
+                            <label className={lbl}>CV / Resume URL</label>
+                            <input
+                              type="url"
+                              value={profileForm.cvUrl || ''}
+                              onChange={e => setProfileForm(p => ({ ...p, cvUrl: e.target.value }))}
+                              placeholder="https://drive.google.com/... or https://yoursite.com/cv.pdf"
+                              className={inp}
+                            />
+                            <p className="text-[11px] text-theme-muted mt-1">Google Drive, Dropbox, or any direct PDF link.</p>
+                          </div>
+                        ) : (
+                          <div className="space-y-3">
+                            <label className={lbl}>Upload PDF File</label>
+                            <label className={`flex flex-col items-center justify-center gap-2 w-full rounded-2xl border-2 border-dashed cursor-pointer transition-all p-6
+                              ${profileForm.cvUrl?.startsWith('data:') ? 'border-orange-400 bg-orange-50 dark:bg-orange-500/10' : 'border-theme hover:border-orange-400 bg-theme-muted hover:bg-orange-50 dark:hover:bg-orange-500/5'}`}>
+                              <div className="p-3 rounded-full bg-orange-100 dark:bg-orange-500/15 text-orange-500 border border-orange-200 dark:border-orange-500/30">
+                                <Download className="w-5 h-5" />
+                              </div>
+                              {profileForm.cvUrl?.startsWith('data:application/pdf') ? (
+                                <div className="text-center">
+                                  <p className="text-sm font-semibold text-orange-500">✓ PDF Uploaded</p>
+                                  <p className="text-[11px] text-theme-muted mt-0.5">Click to replace file</p>
+                                </div>
+                              ) : (
+                                <div className="text-center">
+                                  <p className="text-sm font-semibold text-theme-primary">Click to upload PDF</p>
+                                  <p className="text-[11px] text-theme-muted mt-0.5">PDF files only</p>
+                                </div>
+                              )}
+                              <input type="file" accept=".pdf,application/pdf" className="hidden"
+                                onChange={e => {
+                                  const file = e.target.files?.[0];
+                                  if (!file) return;
+                                  const reader = new FileReader();
+                                  reader.onload = ev => setProfileForm(p => ({ ...p, cvUrl: ev.target.result }));
+                                  reader.readAsDataURL(file);
+                                }}
+                              />
+                            </label>
+                            {profileForm.cvUrl?.startsWith('data:') && (
+                              <button type="button"
+                                onClick={() => setProfileForm(p => ({ ...p, cvUrl: '' }))}
+                                className="text-xs text-rose-500 hover:underline flex items-center gap-1">
+                                <X className="w-3 h-3" /> Remove uploaded file
+                              </button>
+                            )}
+                          </div>
+                        )}
+
+                        {/* Preview / status */}
+                        {profileForm.cvUrl && (
+                          <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/30 text-xs text-emerald-700 dark:text-emerald-400">
+                            <Check className="w-3.5 h-3.5 shrink-0" />
+                            <span className="font-semibold">CV ready —</span>
+                            <span className="truncate">
+                              {profileForm.cvUrl.startsWith('data:') ? 'PDF file uploaded (base64)' : profileForm.cvUrl}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })()}
+                </div>
                 <button type="submit" className="w-full py-3.5 rounded-xl bg-orange-500 text-white font-bold uppercase tracking-wider text-xs hover:bg-orange-600 transition-all shadow-lg"><span className="flex items-center justify-center gap-2"><Save className="w-4 h-4" /> Save Profile</span></button>
               </form>
+
             )}
 
             {/* ══ BOOKINGS ══ */}

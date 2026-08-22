@@ -31,9 +31,19 @@ export default function Navbar() {
   ].filter(l => l.visible);
 
   const handleCVDownload = () => {
-    const cvUrl = chefProfile.cvUrl || '#';
-    if (cvUrl === '#') {
-      // Generate a simple text CV as blob download
+    const cvUrl = chefProfile.cvUrl || '';
+
+    if (cvUrl.startsWith('data:application/pdf')) {
+      // base64 PDF — trigger direct download
+      const a = document.createElement('a');
+      a.href = cvUrl;
+      a.download = `Chef_${chefProfile.name.replace(/ /g, '_')}_CV.pdf`;
+      a.click();
+    } else if (cvUrl && cvUrl !== '#') {
+      // External URL — open in new tab
+      window.open(cvUrl, '_blank');
+    } else {
+      // Fallback — generate plain text CV
       const cvContent = `
 CURRICULUM VITAE
 ================
@@ -60,11 +70,9 @@ ACHIEVEMENTS
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `Chef_${chefProfile.name.replace(' ', '_')}_CV.txt`;
+      a.download = `Chef_${chefProfile.name.replace(/ /g, '_')}_CV.txt`;
       a.click();
       URL.revokeObjectURL(url);
-    } else {
-      window.open(cvUrl, '_blank');
     }
   };
 

@@ -18,7 +18,8 @@ export const initialChefProfile = {
     email: "brandon.chef@example.com",
     phone: "+1 (555) 234-5678",
     restaurant: "Culinary Arts Academy Alum"
-  }
+  },
+  cvUrl: ''
 };
 
 export const initialSections = {
