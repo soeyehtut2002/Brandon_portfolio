@@ -39,9 +39,9 @@ export default function Hero() {
           <div className="flex text-orange-300 gap-1">
             <Award className="w-4 h-4 text-orange-300" />
           </div>
-          <span className="text-xs uppercase tracking-widest text-orange-100 font-semibold">
+          {/* <span className="text-xs uppercase tracking-widest text-orange-100 font-semibold">
             Culinary Graduate & Aspiring Intern
-          </span>
+          </span> */}
         </div>
 
         {/* Title & Name */}

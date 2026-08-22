@@ -7,7 +7,7 @@ import {
   Eye, EyeOff, Save, Camera, Check,
   Star, Award, MessageSquare, Phone, Menu,
   Sparkles, ArrowLeft, Sun, Moon, Download,
-  ChefHat, BarChart2, X
+  ChefHat, BarChart2, X, Lock, LogOut, ShieldCheck, KeyRound
 } from 'lucide-react';
 import Toast from '../components/Toast';
 import ImageUploadField from '../components/ImageUploadField';
@@ -175,6 +175,45 @@ export default function AdminPage() {
     const a = document.createElement('a'); a.href = url; a.download = `Chef_${chefProfile.name.replace(' ', '_')}_CV.txt`; a.click(); URL.revokeObjectURL(url);
   };
 
+  // Passcode Auth States
+  const [passcode, setPasscode] = useState(() => localStorage.getItem('admin_passcode') || 'admin123');
+  const [isAuthenticated, setIsAuthenticated] = useState(() => sessionStorage.getItem('admin_authenticated') === 'true');
+  const [inputPassword, setInputPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [authError, setAuthError] = useState('');
+  const [newPasscode, setNewPasscode] = useState('');
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (inputPassword === passcode) {
+      setIsAuthenticated(true);
+      sessionStorage.setItem('admin_authenticated', 'true');
+      setAuthError('');
+      showToast('Welcome to Admin Dashboard!');
+    } else {
+      setAuthError('Incorrect passcode. Please try again.');
+    }
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    sessionStorage.removeItem('admin_authenticated');
+    setInputPassword('');
+    showToast('Logged out of Admin Dashboard.');
+  };
+
+  const handleUpdatePasscode = (e) => {
+    e.preventDefault();
+    if (!newPasscode.trim()) {
+      showToast('Please enter a new passcode.');
+      return;
+    }
+    setPasscode(newPasscode.trim());
+    localStorage.setItem('admin_passcode', newPasscode.trim());
+    setNewPasscode('');
+    showToast('Admin passcode updated successfully!');
+  };
+
   const TABS = [
     { id: 'overview',   label: 'Overview',    icon: BarChart2 },
     { id: 'sections',   label: 'Sections',    icon: Layers },
@@ -184,8 +223,72 @@ export default function AdminPage() {
     { id: 'gallery',    label: 'Gallery',     icon: Camera, count: gallery.length },
     { id: 'profile',    label: 'Profile',     icon: User },
     { id: 'bookings',   label: 'Inquiries',   icon: MessageSquare, count: reservations.length },
+    { id: 'security',   label: 'Security',    icon: ShieldCheck },
     { id: 'reset',      label: 'Reset',       icon: RotateCcw },
   ];
+
+  /* ── Passcode Lock Screen ── */
+  if (!isAuthenticated) {
+    return (
+      <div className={darkMode ? 'dark' : ''}>
+        <div className="min-h-screen bg-theme-primary text-theme-primary flex items-center justify-center p-4">
+          <div className="w-full max-w-md glass-card border border-theme rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6">
+            <div className="text-center space-y-3">
+              <div className="w-16 h-16 rounded-2xl bg-orange-500/10 text-orange-500 border border-orange-500/30 flex items-center justify-center mx-auto shadow-inner">
+                <Lock className="w-8 h-8" />
+              </div>
+              <h1 className="text-2xl font-serif font-bold text-theme-primary">Admin Dashboard</h1>
+              <p className="text-xs text-theme-muted">Enter passcode to access dashboard settings</p>
+            </div>
+
+            <form onSubmit={handleLogin} className="space-y-4">
+              <div>
+                <label className="block text-xs uppercase tracking-wider text-theme-muted font-semibold mb-1.5">
+                  Admin Passcode
+                </label>
+                <div className="relative">
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    required
+                    value={inputPassword}
+                    onChange={e => setInputPassword(e.target.value)}
+                    placeholder="Enter admin password..."
+                    className="input-theme w-full rounded-xl pl-4 pr-10 py-3 text-sm"
+                    autoFocus
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-theme-muted hover:text-orange-500"
+                  >
+                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
+                </div>
+                {authError && (
+                  <p className="text-xs text-rose-500 mt-1 font-medium">{authError}</p>
+                )}
+              </div>
+
+              <button
+                type="submit"
+                className="w-full py-3.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold uppercase tracking-wider text-xs shadow-lg transition-all active:scale-[0.99]"
+              >
+                Unlock Dashboard
+              </button>
+            </form>
+
+            <div className="pt-4 border-t border-theme flex items-center justify-between text-xs">
+              <span className="text-theme-muted text-[11px]">Passcode: <code className="text-orange-500 font-bold px-1.5 py-0.5 rounded bg-theme-muted border border-theme">{passcode}</code></span>
+              <Link to="/" className="text-orange-500 hover:underline flex items-center gap-1 font-semibold">
+                <ArrowLeft className="w-3.5 h-3.5" /> Back to Site
+              </Link>
+            </div>
+          </div>
+        </div>
+        <Toast />
+      </div>
+    );
+  }
 
   return (
     <div className={darkMode ? 'dark' : ''}>
@@ -548,6 +651,76 @@ export default function AdminPage() {
                       </div>
                     </div>
                   ))}
+                </div>
+              </div>
+            )}
+
+            {/* ══ SECURITY ══ */}
+            {activeTab === 'security' && (
+              <div className="max-w-md mx-auto space-y-6 pt-8">
+                <div>
+                  <h2 className="text-xl font-serif font-bold text-theme-primary">Security</h2>
+                  <p className="text-xs text-theme-muted mt-1">Change your admin dashboard passcode.</p>
+                </div>
+
+                {/* Current passcode display */}
+                <div className={`${card} p-5 flex items-center gap-4`}>
+                  <div className="p-3 rounded-xl bg-emerald-100 dark:bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/30 shrink-0">
+                    <ShieldCheck className="w-5 h-5" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs text-theme-muted font-semibold uppercase tracking-wider mb-0.5">Current Passcode</p>
+                    <code className="text-sm font-bold text-theme-primary font-mono">{passcode}</code>
+                  </div>
+                </div>
+
+                {/* Change passcode form */}
+                <form onSubmit={handleUpdatePasscode} className={`${card} p-5 space-y-4`}>
+                  <h3 className="text-sm font-semibold text-theme-primary uppercase tracking-wider flex items-center gap-2">
+                    <KeyRound className="w-4 h-4 text-orange-500" /> Change Passcode
+                  </h3>
+                  <div>
+                    <label className={lbl}>New Passcode</label>
+                    <div className="relative">
+                      <input
+                        type={showPassword ? 'text' : 'password'}
+                        required
+                        minLength={4}
+                        value={newPasscode}
+                        onChange={e => setNewPasscode(e.target.value)}
+                        placeholder="Enter new passcode (min. 4 characters)"
+                        className={`${inp} pr-10`}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-theme-muted hover:text-orange-500 transition-colors"
+                      >
+                        {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                      </button>
+                    </div>
+                    <p className="text-[11px] text-theme-muted mt-1.5">Passcode is saved in your browser's local storage.</p>
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full py-3 rounded-xl bg-orange-500 text-white font-bold uppercase tracking-wider text-xs hover:bg-orange-600 transition-all shadow-lg flex items-center justify-center gap-2"
+                  >
+                    <ShieldCheck className="w-4 h-4" /> Update Passcode
+                  </button>
+                </form>
+
+                {/* Logout */}
+                <div className={`${card} p-5`}>
+                  <h3 className="text-sm font-semibold text-theme-primary uppercase tracking-wider mb-3 flex items-center gap-2">
+                    <LogOut className="w-4 h-4 text-rose-500" /> Session
+                  </h3>
+                  <p className="text-xs text-theme-muted mb-4">You are currently logged in. Click below to lock the dashboard.</p>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full py-3 rounded-xl border border-rose-200 dark:border-rose-500/30 text-rose-600 dark:text-rose-400 text-xs font-bold uppercase tracking-wider hover:bg-rose-500 hover:text-white hover:border-rose-500 transition-all flex items-center justify-center gap-2"
+                  >
+                    <LogOut className="w-4 h-4" /> Lock Dashboard
+                  </button>
                 </div>
               </div>
             )}
