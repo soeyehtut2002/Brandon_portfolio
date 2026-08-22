@@ -37,22 +37,21 @@ if (process.env.DATABASE_URL) {
    Initial Master Dataset (Fallback & DB Seeding)
    ────────────────────────────────────────────────────────── */
 const defaultProfile = {
-  name: "Antoine Laurent",
-  title: "Head Chef & Restaurant Owner",
-  michelinStars: 3,
-  yearsExperience: 18,
-  signatureDishesCount: 42,
-  tagline: "Good food made with care, skill, and the best ingredients.",
-  subtitle: "French cooking methods combined with Japanese and Nordic flavors.",
+  name: "Brandon Lee",
+  title: "Culinary Graduate & Aspiring Chef",
+  yearsExperience: 2,
+  signatureDishesCount: 15,
+  tagline: "Passionate culinary graduate eager to learn, innovate, and excel in professional kitchens.",
+  subtitle: "Trained in classic French techniques, modern plating art, and fresh fusion flavors.",
   heroImage: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=1920&q=80",
   bioPortrait: "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=1000&q=80",
-  philosophy: "Every dish has a story. Cooking is not just about filling a plate — it is about creating a moment that people remember through taste, smell, and feeling.",
+  philosophy: "Great cooking combines discipline, curiosity, and passion. As a junior chef, I focus on mastering core techniques and bringing fresh energy to every service.",
   socials: {
-    instagram: "@chef_antoine_laurent",
-    twitter: "@chef_laurent",
-    email: "hello@chefantoinelaurent.com",
-    phone: "+33 1 42 68 55 00",
-    restaurant: "L'Étoile D'Or, Paris & Tokyo"
+    instagram: "@brandon_culinary",
+    twitter: "@brandon_chef",
+    email: "brandon.chef@example.com",
+    phone: "+1 (555) 234-5678",
+    restaurant: "Culinary Arts Academy Alum"
   }
 };
 
@@ -112,7 +111,7 @@ const defaultGallery = [
 ];
 
 const defaultReviews = [
-  { id: "rev-1", critic: "François Dupont", publication: "Michelin Guide Inspector", quote: "Chef Antoine creates dishes that stay in your memory long after the meal is over.", rating: 5, avatar: "https://i.pravatar.cc/150?img=11" }
+  { id: "rev-1", critic: "François Dupont", publication: "Senior Culinary Instructor", quote: "Chef Brandon creates dishes that stay in your memory long after the meal is over.", rating: 5, avatar: "https://i.pravatar.cc/150?img=11" }
 ];
 
 const defaultReservations = [];

@@ -117,7 +117,7 @@ export default function ExperienceAwards() {
             Awards & Career
           </h2>
           <p className="text-sm text-theme-muted mt-3 font-light max-w-lg mx-auto">
-            A look at Chef Antoine's career journey, the restaurants he has worked at, and the awards he has earned.
+            A look at Chef Brandon's career journey, training, and culinary experience.
           </p>
           <div className="divider-orange" />
         </div>
