@@ -168,62 +168,94 @@ ACHIEVEMENTS
         </div>
       </div>
 
-      {/* ══ Mobile Drawer ══ */}
-      <div className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${mobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}>
-        <div className="bg-theme-card border-t border-theme px-4 py-5 space-y-1 shadow-xl">
+      {/* ══ Mobile Side-Sliding Drawer Backdrop ══ */}
+      <div
+        className={`fixed inset-0 bg-stone-950/70 backdrop-blur-md z-50 lg:hidden transition-opacity duration-300 ${
+          mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+        onClick={() => setMobileMenuOpen(false)}
+      />
 
-          {/* Nav Links */}
-          {navLinks.map((link) => (
+      {/* ══ Mobile Side-Sliding Drawer Panel ══ */}
+      <aside
+        className={`fixed top-0 right-0 bottom-0 z-50 w-[85%] max-w-sm bg-stone-950 text-stone-100 border-l border-stone-800/80 shadow-2xl lg:hidden flex flex-col transition-transform duration-300 ease-out transform ${
+          mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        {/* Drawer Header */}
+        <div className="flex items-center justify-between p-5 border-b border-stone-800/80 bg-stone-900/60">
+          <div className="flex items-center gap-2.5">
+            <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-orange-500 to-orange-300 p-[1.5px] shadow-md shadow-orange-500/30">
+              <div className="w-full h-full bg-stone-950 rounded-full flex items-center justify-center">
+                <UtensilsCrossed className="w-4 h-4 text-orange-400" />
+              </div>
+            </div>
+            <div>
+              <h3 className="font-serif font-bold text-sm tracking-wider uppercase text-stone-100">
+                Chef {chefProfile.name.split(' ')[0]}
+              </h3>
+              <p className="text-[10px] text-orange-400 uppercase tracking-widest font-semibold">
+                {chefProfile.title || 'Culinary Portfolio'}
+              </p>
+            </div>
+          </div>
+          <button
+            onClick={() => setMobileMenuOpen(false)}
+            className="p-2 rounded-xl bg-stone-900 border border-stone-800 hover:border-orange-500/50 hover:bg-orange-500 text-stone-400 hover:text-white transition-all"
+            aria-label="Close menu"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Drawer Links */}
+        <nav className="flex-1 p-5 space-y-2.5 overflow-y-auto">
+          {navLinks.map((link, idx) => (
             <a
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center px-3 py-2.5 rounded-lg text-sm text-theme-secondary hover:text-orange-500 hover:bg-theme-muted transition-all uppercase tracking-widest font-medium"
+              className="group flex items-center justify-between p-3.5 rounded-2xl bg-stone-900/50 border border-stone-800/80 hover:border-orange-500/50 hover:bg-orange-500/10 text-stone-200 hover:text-orange-400 transition-all uppercase tracking-widest text-xs font-bold"
+              style={{ transitionDelay: `${idx * 30}ms` }}
             >
-              {link.name}
+              <span>{link.name}</span>
+              <span className="w-2 h-2 rounded-full bg-orange-500/40 group-hover:bg-orange-500 group-hover:scale-125 transition-all" />
             </a>
           ))}
+        </nav>
 
-          {/* Divider */}
-          <div className="border-t border-theme my-3" />
-
-          {/* Mobile Actions Row */}
-          <div className="flex items-center gap-2 px-1">
-
-            {/* Dark mode label + toggle */}
-            <div className="flex items-center gap-2 flex-1">
+        {/* Drawer Actions */}
+        <div className="p-5 border-t border-stone-800/80 bg-stone-900/40 space-y-3.5">
+          <div className="flex items-center justify-between p-3 rounded-2xl bg-stone-900 border border-stone-800">
+            <div className="flex items-center gap-2">
               {darkMode ? <Moon className="w-4 h-4 text-orange-400" /> : <Sun className="w-4 h-4 text-orange-400" />}
-              <span className="text-xs text-theme-muted uppercase tracking-wider">
+              <span className="text-xs font-semibold uppercase tracking-wider text-stone-300">
                 {darkMode ? 'Dark Mode' : 'Light Mode'}
               </span>
-              <button
-                onClick={toggleDarkMode}
-                className={`ml-auto relative w-11 h-5.5 rounded-full border border-theme flex items-center px-0.5 transition-colors duration-300 bg-theme-muted`}
-              >
-                <span className={`w-4 h-4 rounded-full flex items-center justify-center transition-all duration-300 shadow-sm ${darkMode ? 'translate-x-5 bg-orange-500' : 'translate-x-0 bg-orange-400'}`}>
-                  {darkMode ? <Moon className="w-2.5 h-2.5 text-white" /> : <Sun className="w-2.5 h-2.5 text-white" />}
-                </span>
-              </button>
             </div>
-          </div>
-
-          <div className="flex gap-2 px-1 mt-2">
-            {/* CV Download */}
             <button
-              onClick={() => { handleCVDownload(); setMobileMenuOpen(false); }}
-              className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl
-                bg-orange-50 dark:bg-orange-500/10 text-orange-500 border border-orange-200 dark:border-orange-500/30
-                hover:bg-orange-500 hover:text-white hover:border-orange-500
-                text-xs font-semibold uppercase tracking-wider transition-all"
+              onClick={toggleDarkMode}
+              className="relative w-11 h-6 rounded-full bg-stone-800 border border-stone-700 flex items-center px-1"
             >
-              <Download className="w-4 h-4" />
-              <span>Download CV</span>
+              <span
+                className={`w-4 h-4 rounded-full bg-orange-500 shadow-md transition-transform duration-300 flex items-center justify-center ${
+                  darkMode ? 'translate-x-5' : 'translate-x-0'
+                }`}
+              >
+                {darkMode ? <Moon className="w-2.5 h-2.5 text-white" /> : <Sun className="w-2.5 h-2.5 text-white" />}
+              </span>
             </button>
-
-
           </div>
+
+          <button
+            onClick={() => { handleCVDownload(); setMobileMenuOpen(false); }}
+            className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl bg-orange-500 text-white text-xs font-bold uppercase tracking-wider hover:bg-orange-600 transition-all shadow-lg shadow-orange-500/20"
+          >
+            <Download className="w-4 h-4" />
+            <span>Download CV</span>
+          </button>
         </div>
-      </div>
+      </aside>
     </header>
   );
 }
