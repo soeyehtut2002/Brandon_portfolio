@@ -74,10 +74,10 @@ const defaultDishes = [
     prepTime: "25 min",
     image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=80",
     badge: "Chef's Best",
-    shortDescription: "Top-grade Japanese Wagyu beef served with baby leeks, bone broth, and a rich black truffle sauce cooked for 48 hours.",
-    fullDescription: "This is our most popular dish. The Wagyu beef is grilled over charcoal and served with slow-cooked baby leeks, crispy sunchoke chips, and a deep black truffle sauce.",
+    shortDescription: "Top-grade Japanese Wagyu beef served with baby scallions, bone broth, and a rich black truffle sauce cooked for 48 hours.",
+    fullDescription: "This is our most popular dish. The Wagyu beef is grilled over charcoal and served with slow-cooked baby scallions, crispy sunchoke chips, and a deep black truffle sauce.",
     dietary: ["Gluten-Free", "High Protein"],
-    ingredients: ["A5 Wagyu Beef", "Black Truffle", "Bone Broth", "Baby Leeks", "Sunchoke", "Sea Salt"],
+    ingredients: ["A5 Wagyu Beef", "Black Truffle", "Bone Broth", "Baby Scallions", "Sunchoke", "Sea Salt"],
     pairing: "2015 Château Margaux Red Wine",
     chefNote: "We cook the beef at very high heat for a short time to get a nice crust on the outside while keeping it soft inside.",
     flavorProfile: { umami: 98, richness: 95, acidity: 40, sweetness: 25, texture: 92 }
