@@ -231,16 +231,18 @@ export default function AdminPage() {
   if (!isAuthenticated) {
     return (
       <div className={darkMode ? 'dark' : ''}>
-        <div className="min-h-screen bg-theme-primary text-theme-primary flex items-center justify-center p-4">
-          <div className="w-full max-w-md glass-card border border-theme rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6">
-            <div className="text-center space-y-3">
-              <div className="w-16 h-16 rounded-2xl bg-orange-500/10 text-orange-500 border border-orange-500/30 flex items-center justify-center mx-auto shadow-inner">
-                <Lock className="w-8 h-8" />
+        <div className="min-h-[100dvh] bg-theme-primary text-theme-primary flex flex-col justify-center items-center p-4 sm:p-6 overflow-y-auto transition-colors duration-300">
+          <div className="w-full max-w-xs sm:max-w-md glass-card border border-theme rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6 my-auto">
+            {/* Header & Lock Icon */}
+            <div className="text-center space-y-2.5">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-orange-500/10 text-orange-500 border border-orange-500/30 flex items-center justify-center mx-auto shadow-inner">
+                <Lock className="w-7 h-7 sm:w-8 sm:h-8" />
               </div>
-              <h1 className="text-2xl font-serif font-bold text-theme-primary">Admin Dashboard</h1>
+              <h1 className="text-xl sm:text-2xl font-serif font-bold text-theme-primary">Admin Dashboard</h1>
               <p className="text-xs text-theme-muted">Enter passcode to access dashboard settings</p>
             </div>
 
+            {/* Form */}
             <form onSubmit={handleLogin} className="space-y-4">
               <div>
                 <label className="block text-xs uppercase tracking-wider text-theme-muted font-semibold mb-1.5">
@@ -252,33 +254,37 @@ export default function AdminPage() {
                     required
                     value={inputPassword}
                     onChange={e => setInputPassword(e.target.value)}
-                    placeholder="Enter admin password..."
-                    className="input-theme w-full rounded-xl pl-4 pr-10 py-3 text-sm"
+                    placeholder="Enter admin passcode..."
+                    className="input-theme w-full rounded-2xl pl-4 pr-12 py-3.5 text-sm min-h-[48px] focus:ring-2 focus:ring-orange-500/40"
                     autoFocus
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-theme-muted hover:text-orange-500"
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2 p-1 text-theme-muted hover:text-orange-500 transition-colors"
+                    aria-label={showPassword ? 'Hide passcode' : 'Show passcode'}
                   >
                     {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
                 </div>
                 {authError && (
-                  <p className="text-xs text-rose-500 mt-1 font-medium">{authError}</p>
+                  <p className="text-xs text-rose-500 mt-2 font-medium flex items-center gap-1">
+                    <span>⚠️</span> {authError}
+                  </p>
                 )}
               </div>
 
               <button
                 type="submit"
-                className="w-full py-3.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold uppercase tracking-wider text-xs shadow-lg transition-all active:scale-[0.99]"
+                className="w-full min-h-[48px] py-3.5 rounded-2xl bg-orange-500 hover:bg-orange-600 text-white font-bold uppercase tracking-wider text-xs shadow-lg shadow-orange-500/20 transition-all active:scale-[0.99] flex items-center justify-center"
               >
                 Unlock Dashboard
               </button>
             </form>
 
-
-            <div className="pt-4 border-t border-theme flex items-center justify-end text-xs">
+            {/* Footer */}
+            <div className="pt-4 border-t border-theme flex items-center justify-between text-xs">
+              <span className="text-[11px] text-theme-muted font-medium">Portfolio Manager</span>
               <Link to="/" className="text-orange-500 hover:underline flex items-center gap-1 font-semibold">
                 <ArrowLeft className="w-3.5 h-3.5" /> Back to Site
               </Link>
