@@ -327,16 +327,28 @@ export default function AdminPage() {
           </div>
         </header>
 
-        {/* ── Mobile Tab Bar ── */}
-        <div className="md:hidden w-full bg-theme-secondary border-b border-theme px-2 py-1.5 flex gap-1 overflow-x-auto shrink-0 sticky top-[57px] z-20">
+        {/* ── Mobile Pill Nav Bar ── */}
+        <div className="md:hidden w-full bg-theme-card/90 backdrop-blur-md border-b border-theme px-3 py-2 flex gap-1.5 overflow-x-auto shrink-0 sticky top-0 z-20">
           {TABS.map(tab => {
             const Icon = tab.icon;
             const active = activeTab === tab.id;
             return (
-              <button key={tab.id} onClick={() => setActiveTab(tab.id)}
-                className={`flex flex-col items-center gap-0.5 px-3 py-2 rounded-xl text-[10px] font-semibold uppercase whitespace-nowrap shrink-0 transition-all ${active ? 'bg-orange-500 text-white' : 'text-theme-muted hover:text-orange-500'}`}>
-                <Icon className="w-4 h-4" />
-                {tab.label}
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider whitespace-nowrap shrink-0 transition-all ${
+                  active
+                    ? 'bg-orange-500 text-white shadow-md'
+                    : 'bg-theme-muted/60 text-theme-muted hover:text-orange-500 border border-theme/60'
+                }`}
+              >
+                <Icon className="w-3.5 h-3.5" />
+                <span>{tab.label}</span>
+                {tab.count !== undefined && (
+                  <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${active ? 'bg-white/25 text-white' : 'bg-theme-muted text-theme-muted'}`}>
+                    {tab.count}
+                  </span>
+                )}
               </button>
             );
           })}
